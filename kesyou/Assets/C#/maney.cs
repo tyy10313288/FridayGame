@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class maney : MonoBehaviour
 {
-    bool usually;
-    bool white;
-    bool green;
-    bool black;
-
+    public int a;
     void Start()
     {
 
@@ -16,14 +12,34 @@ public class maney : MonoBehaviour
 
     void Update()
     {
-        if (usually)
+        switch (a)
         {
-
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
         }
+    }
+    public void Usually()
+    {
 
     }
-    public void A()
+    public void White()
     {
-        Debug.Log("a");
+
     }
+    public void Green()
+    {
+
+    }
+    public void Black()
+    {
+
+    }
+
+
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class futuu : MonoBehaviour, IPointerClickHandler
+public class Usually : MonoBehaviour, IPointerClickHandler
 {
     maney script;
     private void Start()
@@ -12,6 +12,6 @@ public class futuu : MonoBehaviour, IPointerClickHandler
     }
     public void OnPointerClick(PointerEventData eventData)
     {
-        script.A();
+         
     }
 }

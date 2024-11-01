@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 842477744}
   m_Layer: 0
   m_Name: Circle (3)
-  m_TagString: Untagged
+  m_TagString: kesyou
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -430,13 +430,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1697012325}
   - component: {fileID: 1697012324}
+  - component: {fileID: 1697012326}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Destroy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1697012324
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -469,7 +470,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.029518127, y: 0}
+  m_Offset: {x: -0.029518127, y: -0.00000023841858}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -480,7 +481,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 21.154198, y: 1}
+  m_Size: {x: 21.154198, y: 9.9734745}
   m_EdgeRadius: 0
 --- !u!4 &1697012325
 Transform:
@@ -497,6 +498,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1697012326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697012323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8a8643a15a20674a95d2e9604f55604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1702354639
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,6 +554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7bcd640a781aca4884e4936d37e98f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  a: 0
 --- !u!1 &1872350967
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,7 +568,7 @@ GameObject:
   - component: {fileID: 1872350968}
   m_Layer: 0
   m_Name: Circle (1)
-  m_TagString: Untagged
+  m_TagString: kesyou
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -674,7 +688,7 @@ GameObject:
   - component: {fileID: 2001935424}
   m_Layer: 0
   m_Name: Circle
-  m_TagString: Untagged
+  m_TagString: kesyou
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -795,7 +809,7 @@ GameObject:
   - component: {fileID: 2090732045}
   m_Layer: 0
   m_Name: Circle (2)
-  m_TagString: Untagged
+  m_TagString: kesyou
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
