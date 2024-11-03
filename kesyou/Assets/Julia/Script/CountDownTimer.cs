@@ -20,7 +20,7 @@ public class CountDownTimer : MonoBehaviour
 
     void Update()
     {
-        if (!canClick)  // 如果点击已禁止，不再更新计时器
+        if (!canClick)
         return;
 
         float t = countdownTime - (Time.time - startTime);
@@ -55,20 +55,20 @@ public class CountDownTimer : MonoBehaviour
     GameObject[] objects = GameObject.FindGameObjectsWithTag("ke");
     if (objects.Length == 0)
     {
-        canClick = false;  // 禁止点击和进一步的更新
-        resultText.text = "Win";  // 显示胜利消息
+        canClick = false;
+        resultText.text = "Win";
     }
 }
 
   void Awake()
 {
-    enabled = false;  // 禁用 Update 方法，防止計時開始
+    enabled = false;
 }
 
 public void BeginCountdown()
 {
     startTime = Time.time;
-    enabled = true;  // 啟用計時器
+    enabled = true;
 }
 
 }

@@ -8,7 +8,7 @@ public class Eyebrow : MonoBehaviour
     {        
     if (CountDownTimer.canClick)
         {
-            // 執行點擊後的操作
+            
             Destroy(gameObject);
         }
         else

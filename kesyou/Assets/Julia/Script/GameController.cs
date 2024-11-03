@@ -18,9 +18,9 @@ public class GameController : MonoBehaviour
         startText.gameObject.SetActive(false);  
         foreach (var obj in gameObjectsToActivate)
         {
-            obj.SetActive(false);  // 初始禁用所有要激活的游戏对象
+            obj.SetActive(false);
         }
-        timerScript.enabled = false;  // 初始禁用计时器
+        timerScript.enabled = false;
     }
 
     void StartGame()
@@ -34,20 +34,20 @@ public class GameController : MonoBehaviour
         startText.gameObject.SetActive(true);
 
         startText.text = "Ready";
-        yield return new WaitForSeconds(1.5f);  // 等待1.5秒
+        yield return new WaitForSeconds(1.5f);
 
         startText.text = "Start!";
-        yield return new WaitForSeconds(1.0f);  // 再等待1.0秒
+        yield return new WaitForSeconds(1.0f);
 
-        startText.gameObject.SetActive(false);  // 隐藏文本
+        startText.gameObject.SetActive(false);
 
-        // 激活所有游戏对象
+        
         foreach (var obj in gameObjectsToActivate)
         {
             obj.SetActive(true);
         }
 
-        // 启动计时器
+        
         timerScript.enabled = true;
         timerScript.BeginCountdown();
     }
