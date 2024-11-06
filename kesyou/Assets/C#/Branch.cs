@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Unity.Collections.AllocatorManager;
 
 public class Branch : MonoBehaviour
 {
     public int a;
+
+
     void Start()
     {
         GameObject usuallay = (GameObject)Resources.Load("ïÅí ÇÃêF");
         GameObject white = (GameObject)Resources.Load("îí");
         GameObject green = (GameObject)Resources.Load("óŒ");
-        GameObject black = (GameObject)Resources.Load("çï");
+        GameObject black = (GameObject)Resources.Load("çï1");
 
         Instantiate(usuallay, new Vector2(-3, 3), Quaternion.identity);
         Instantiate(white, new Vector2(-3, -3), Quaternion.identity);
@@ -40,7 +43,11 @@ public class Branch : MonoBehaviour
     }
     public void White()
     {
-        Debug.Log("i");     
+        GameObject black1 = (GameObject)Resources.Load("çï2");
+        GameObject red = (GameObject)Resources.Load("ê‘");
+
+        Instantiate(black1, new Vector2(3, 0), Quaternion.identity);
+        Instantiate(red, new Vector2(-3, 0), Quaternion.identity);
     }
     public void Green()
     {

@@ -16,11 +16,8 @@ public class destroy : MonoBehaviour
 
     }
     void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("kesyou"))
-        {
-            Destroy(other.gameObject);
-        }
+    {     
+            Destroy(other.gameObject);     
     }
 }
 

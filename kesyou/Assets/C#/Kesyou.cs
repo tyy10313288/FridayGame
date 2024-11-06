@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class Kesyou : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private int A;
+    [SerializeField] private int B;
     Branch script;
     private void Start()
     {
@@ -17,6 +18,10 @@ public class Kesyou : MonoBehaviour, IPointerClickHandler
         {
             case 1:
                 script.a = 1;
+                if(B == 2)
+                {
+                    script.a = 1;
+                }
                 break;
             case 2:
                 script.a = 2;
