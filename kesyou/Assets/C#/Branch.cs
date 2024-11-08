@@ -6,9 +6,55 @@ using static Unity.Collections.AllocatorManager;
 public class Branch : MonoBehaviour
 {
     public int a;
+    bool w;
+    bool u;
+
 
 
     void Start()
+    {
+        GameObject foundation = (GameObject)Resources.Load("ファンデーション");
+        Instantiate(foundation, new Vector2(0, 0), Quaternion.identity);
+    }
+
+    void Update()
+    {
+        switch (a)
+        {
+            case 1:
+                if (!u)
+                {
+                    Des();
+                    Invoke(nameof(Usually), 0.2f);
+                    u = true;
+                }
+
+                break;
+            case 2:
+                if (!w)
+                {
+                    Des();
+                    Invoke(nameof(White), 0.2f);
+                    w = true;
+                }
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+        }
+    }
+    public void Des()
+    {
+        GameObject des = (GameObject)Resources.Load("Destroy");
+        Instantiate(des, new Vector2(0, 0), Quaternion.identity);
+    }
+    public void Found()
+    {
+        Des();
+        Invoke(nameof(Foundation), 0.2f);
+    }
+    public void Foundation()
     {
         GameObject usuallay = (GameObject)Resources.Load("普通の色");
         GameObject white = (GameObject)Resources.Load("白");
@@ -20,26 +66,10 @@ public class Branch : MonoBehaviour
         Instantiate(green, new Vector2(3, 3), Quaternion.identity);
         Instantiate(black, new Vector2(3, -3), Quaternion.identity);
     }
-
-    void Update()
-    {
-        switch (a)
-        {
-            case 1:
-                Usually();
-                break;
-            case 2:
-                White();    
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-        }
-    }
     public void Usually()
     {
-        Debug.Log("a");
+        GameObject eye = (GameObject)Resources.Load("アイシャドウ");
+        Instantiate(eye, new Vector2(0, 0), Quaternion.identity);
     }
     public void White()
     {

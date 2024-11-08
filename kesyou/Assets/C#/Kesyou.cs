@@ -32,6 +32,10 @@ public class Kesyou : MonoBehaviour, IPointerClickHandler
             case 4:
                 script.a = 4;
                 break;
+
+            case 5:
+                script.Found();
+                break;
         }
     }
 }
