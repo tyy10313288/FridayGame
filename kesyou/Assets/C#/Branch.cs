@@ -16,6 +16,7 @@ public class Branch : MonoBehaviour
     {
         switch (a)
         {
+            //1•ªŠò–Ú
             case 1:
                  Des();
                 Invoke(nameof(Usually), 0.2f);
@@ -36,6 +37,7 @@ public class Branch : MonoBehaviour
                 Invoke(nameof(Black), 0.2f);
                 a = 100;
                 break;
+            //2•ªŠò–Ú
             case 5:
                 Des();
                 Invoke(nameof(Eyeshadow), 0.2f);
@@ -50,6 +52,14 @@ public class Branch : MonoBehaviour
             case 9:
                 Des();
                 Invoke(nameof(Tactilesense), 0.2f);
+                a = 100;
+                break;
+            case 10:
+                break;
+                //3•ªŠò–Ú
+            case 11:
+                Des();
+                Invoke(nameof(Pink), 0.2f);
                 a = 100;
                 break;
         }
@@ -114,5 +124,11 @@ public class Branch : MonoBehaviour
         GameObject piccolo = (GameObject)Resources.Load("ƒsƒbƒRƒ");
 
         Instantiate(piccolo, new Vector2(0, 0), Quaternion.identity);
+    }
+    void Pink()
+    {
+        GameObject falseeyelashes = (GameObject)Resources.Load("‚Â‚¯‚Ü‚Â–Ñ");
+
+        Instantiate(falseeyelashes, new Vector2(0, 0), Quaternion.identity);
     }
 }

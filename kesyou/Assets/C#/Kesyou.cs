@@ -38,12 +38,22 @@ public class Kesyou : MonoBehaviour, IPointerClickHandler
                 script.a = A;
                 break;
             case 6:
+                script.a = A;
                 break;
             case 7:
+                script.a = A;
                 break;
             case 8:
+                script.a = A;
                 break;
             case 9:
+                script.a = A;
+                break;
+            case 10:
+                script.a = A;
+                break;
+                //3•ªŠò–Ú
+            case 11:
                 script.a = A;
                 break;
         }
