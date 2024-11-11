@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 public class Kesyou : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private int A;
-    [SerializeField] private int B;
     Branch script;
     private void Start()
     {
@@ -16,26 +15,38 @@ public class Kesyou : MonoBehaviour, IPointerClickHandler
     {
         switch (A)
         {
-            case 1:
-                script.a = 1;
-                if(B == 2)
-                {
-                    script.a = 1;
-                }
-                break;
-            case 2:
-                script.a = 2;
-                break;
-            case 3:
-                script.a = 3;
-                break;
-            case 4:
-                script.a = 4;
-                break;
-
-            case 5:
+            //ファンデーション
+            case 0:
                 script.Found();
                 break;
+            //1分岐目
+            case 1:
+                script.a = A;
+
+                break;
+            case 2:
+                script.a = A;
+                break;
+            case 3:
+                script.a = A;
+                break;
+            case 4:
+                script.a = A;
+                break;
+            //2分岐目
+            case 5:
+                script.a = A;
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 8:
+                break;
+            case 9:
+                script.a = A;
+                break;
         }
+
     }
 }

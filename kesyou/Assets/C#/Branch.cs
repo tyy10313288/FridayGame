@@ -6,11 +6,6 @@ using static Unity.Collections.AllocatorManager;
 public class Branch : MonoBehaviour
 {
     public int a;
-    bool w;
-    bool u;
-
-
-
     void Start()
     {
         GameObject foundation = (GameObject)Resources.Load("ファンデーション");
@@ -22,29 +17,44 @@ public class Branch : MonoBehaviour
         switch (a)
         {
             case 1:
-                if (!u)
-                {
-                    Des();
-                    Invoke(nameof(Usually), 0.2f);
-                    u = true;
-                }
-
+                 Des();
+                Invoke(nameof(Usually), 0.2f);
+                a = 100;
                 break;
             case 2:
-                if (!w)
-                {
-                    Des();
-                    Invoke(nameof(White), 0.2f);
-                    w = true;
-                }
+                Des();
+                Invoke(nameof(White), 0.2f);
+                a = 100;
                 break;
             case 3:
+                Des();
+                Invoke(nameof(Green), 0.2f);
+                a = 100;
                 break;
             case 4:
+                Des();
+                Invoke(nameof(Black), 0.2f);
+                a = 100;
+                break;
+            case 5:
+                Des();
+                Invoke(nameof(Eyeshadow), 0.2f);
+                a = 100;
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 8:
+                break;
+            case 9:
+                Des();
+                Invoke(nameof(Tactilesense), 0.2f);
+                a = 100;
                 break;
         }
     }
-    public void Des()
+    void Des()
     {
         GameObject des = (GameObject)Resources.Load("Destroy");
         Instantiate(des, new Vector2(0, 0), Quaternion.identity);
@@ -54,7 +64,7 @@ public class Branch : MonoBehaviour
         Des();
         Invoke(nameof(Foundation), 0.2f);
     }
-    public void Foundation()
+    void Foundation()
     {
         GameObject usuallay = (GameObject)Resources.Load("普通の色");
         GameObject white = (GameObject)Resources.Load("白");
@@ -66,27 +76,43 @@ public class Branch : MonoBehaviour
         Instantiate(green, new Vector2(3, 3), Quaternion.identity);
         Instantiate(black, new Vector2(3, -3), Quaternion.identity);
     }
-    public void Usually()
+    void Usually()
     {
         GameObject eye = (GameObject)Resources.Load("アイシャドウ");
         Instantiate(eye, new Vector2(0, 0), Quaternion.identity);
     }
-    public void White()
+    void White()
     {
         GameObject black1 = (GameObject)Resources.Load("黒2");
         GameObject red = (GameObject)Resources.Load("赤");
 
-        Instantiate(black1, new Vector2(3, 0), Quaternion.identity);
-        Instantiate(red, new Vector2(-3, 0), Quaternion.identity);
+        Instantiate(black1, new Vector2(-3, 0), Quaternion.identity);
+        Instantiate(red, new Vector2(3, 0), Quaternion.identity);
     }
-    public void Green()
+    void Green()
+    {
+        GameObject ear = (GameObject)Resources.Load("耳");
+        GameObject tactilesense = (GameObject)Resources.Load("触覚");
+
+        Instantiate(ear, new Vector2(-3, 0), Quaternion.identity);
+        Instantiate(tactilesense, new Vector2(3, 0), Quaternion.identity);
+    }
+    void Black()
     {
 
     }
-    public void Black()
+    void Eyeshadow()
     {
+        GameObject pink = (GameObject)Resources.Load("ピンク");
+        GameObject purple = (GameObject)Resources.Load("紫");
 
+        Instantiate(pink, new Vector2(-3, 0), Quaternion.identity);
+        Instantiate(purple, new Vector2(3, 0), Quaternion.identity);
     }
+    void Tactilesense()
+    {
+        GameObject piccolo = (GameObject)Resources.Load("ピッコロ");
 
-
+        Instantiate(piccolo, new Vector2(0, 0), Quaternion.identity);
+    }
 }
