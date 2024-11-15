@@ -8,54 +8,16 @@ public class MemoryGame : MonoBehaviour
     public Image displayImage;
     public Button[] colorButtons;
     public Sprite[] colorSprites;
-    public GameObject panel;
-    public Button startButton;
-    public Text startText;
-    public Text resultText;
-    public GameObject[] gameObjectsToActivate;
 
     private List<int> selectedColors = new List<int>();
     private List<int> playerInput = new List<int>();
 
-   void Start()
-{
-    panel.SetActive(true);
-    startButton.onClick.AddListener(() => StartCoroutine(ReadyStartSequence()));
-    startText.gameObject.SetActive(false);  
-
-    foreach (var obj in gameObjectsToActivate)
-{
-    obj.SetActive(false);
-}
-}
-void Update()
-{
-    foreach (var obj in gameObjectsToActivate)
+    void Start()
     {
-        Debug.Log($"{obj.name} Active State: {obj.activeSelf}");
+        StartGame();
     }
-}
 
-    IEnumerator ReadyStartSequence()
-{
-    startButton.interactable = false;
-    panel.SetActive(false);
-
-    startText.gameObject.SetActive(true);
-    startText.text = "Ready";
-    yield return new WaitForSeconds(1.5f);
-
-    startText.text = "Start!";
-    yield return new WaitForSeconds(1.0f);
-
-    startText.gameObject.SetActive(false);
-
-    StartGame();
-
-    startButton.interactable = true;
-}
-
-    void StartGame()
+    public void StartGame()
     {
         selectedColors.Clear();
         playerInput.Clear();
@@ -76,26 +38,17 @@ void Update()
     }
 
     IEnumerator DisplayColorsSequence()
-{
-    EnableColorButtons(false);
-
-    foreach (int colorIndex in selectedColors)
     {
-        displayImage.sprite = colorSprites[colorIndex];
-        yield return new WaitForSeconds(2f);
-        displayImage.sprite = null;  
-        yield return new WaitForSeconds(0.5f);
-    }
+        foreach (int colorIndex in selectedColors)
+        {
+            displayImage.sprite = colorSprites[colorIndex];
+            yield return new WaitForSeconds(1f);
+            displayImage.sprite = null;  
+            yield return new WaitForSeconds(0.5f);
+        }
 
-    foreach (var obj in gameObjectsToActivate)
-    {
-        Debug.Log($"Before Activating: {obj.name}, Active: {obj.activeSelf}");
-        obj.SetActive(true);
-        Debug.Log($"After Activating: {obj.name}, Active: {obj.activeSelf}");
+        EnableColorButtons(true);
     }
-
-    EnableColorButtons(true);
-}
 
     public void OnColorButtonClick(int buttonIndex)
     {
@@ -113,15 +66,20 @@ void Update()
         {
             if (playerInput[i] != selectedColors[i])
             {
-                resultText.text = "Lose";
-                Debug.Log("Lose");
-
+                Debug.Log("lose");
+                RestartGame();
+                return;
             }
         }
-        resultText.text = "Win";
 
-        Debug.Log("Win");
+        Debug.Log("win");
+        RestartGame();
+    }
 
+    void RestartGame()
+    {
+        EnableColorButtons(false);
+        StartGame();
     }
 
     void EnableColorButtons(bool enable)
@@ -131,14 +89,4 @@ void Update()
             button.interactable = enable;
         }
     }
-
-    void ManualActivateTest()
-{
-    foreach (var obj in gameObjectsToActivate)
-    {
-        obj.SetActive(true);
-        Debug.Log($"Manual Activation: {obj.name}, Active: {obj.activeSelf}");
-    }
-}
-
 }
