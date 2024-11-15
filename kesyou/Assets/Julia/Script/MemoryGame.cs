@@ -25,7 +25,7 @@ public class MemoryGame : MonoBehaviour
         StartCoroutine(DisplayColorsSequence());
     }
 
-    void SelectRandomColors()
+    public void SelectRandomColors()
     {
         while (selectedColors.Count < 4)
         {
@@ -46,7 +46,6 @@ public class MemoryGame : MonoBehaviour
             displayImage.sprite = null;  
             yield return new WaitForSeconds(0.5f);
         }
-
         EnableColorButtons(true);
     }
 
@@ -66,21 +65,12 @@ public class MemoryGame : MonoBehaviour
         {
             if (playerInput[i] != selectedColors[i])
             {
-                Debug.Log("lose");
-                RestartGame();
-                return;
+                Debug.Log("lose");                
             }
         }
-
-        Debug.Log("win");
-        RestartGame();
+        Debug.Log("win");        
     }
-
-    void RestartGame()
-    {
-        EnableColorButtons(false);
-        StartGame();
-    }
+    
 
     void EnableColorButtons(bool enable)
     {

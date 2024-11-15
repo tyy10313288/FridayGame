@@ -2459,7 +2459,7 @@ MonoBehaviour:
   gameObjectsToActivate:
   - {fileID: 1270875818}
   - {fileID: 2083944547}
-  memoryGame: {fileID: 0}
+  memoryGame: {fileID: 114039009}
 --- !u!4 &1404488697
 Transform:
   m_ObjectHideFlags: 0
