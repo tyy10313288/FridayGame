@@ -6,12 +6,7 @@ public class Eyebrow : MonoBehaviour
 {
     void OnMouseDown()
     {
-        if (!CountDownTimer.canClick)
-        {
-           
-            return;
-        }
-       
+        // Destroy the game object when it is clicked
         Destroy(gameObject);
     }
 }

@@ -51,5 +51,4 @@ public class GameController : MonoBehaviour
         timerScript.enabled = true;
         timerScript.BeginCountdown();
     }
-    
 }
