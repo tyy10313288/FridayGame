@@ -17,7 +17,7 @@ public class MemoryGame : MonoBehaviour
         StartGame();
     }
 
-    void StartGame()
+    public void StartGame()
     {
         selectedColors.Clear();
         playerInput.Clear();
@@ -90,4 +90,3 @@ public class MemoryGame : MonoBehaviour
         }
     }
 }
-
