@@ -2591,7 +2591,7 @@ GameObject:
   - component: {fileID: 1521946678}
   - component: {fileID: 1521946677}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: StartPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3006,7 +3006,7 @@ GameObject:
   - component: {fileID: 1833595693}
   - component: {fileID: 1833595692}
   m_Layer: 5
-  m_Name: Button (Legacy)
+  m_Name: Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
