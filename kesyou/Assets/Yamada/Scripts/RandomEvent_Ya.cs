@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class RandomEvent_Ya : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class RandomEvent_Ya : MonoBehaviour
     public float changeTime = 1f; // 移動方向を変える時間
     public float timeLimit = 10f; // 時間制限（10秒）
     public TextMeshProUGUI timerText; // UIのTextコンポーネントを参照
+    public Text resultText; // 結果を表示するテキスト
 
 
     private Vector2 targetPosition;
@@ -30,6 +32,7 @@ public class RandomEvent_Ya : MonoBehaviour
         {
             Destroy(gameObject);
             Debug.Log("時間制限を超えたのでオブジェクトは破壊されました");
+            resultText.text = "遅い";
         }
 
         UpdateTimerUI();
