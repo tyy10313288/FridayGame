@@ -21,12 +21,12 @@ public class PuzzleManager : MonoBehaviour
             return;
         }
 
-        List<Transform> availablePositions = new List<Transform>(positions); // 创建可用位置的副本
 
         // 随机排列拼图块
         foreach (var piece in pieces)
         {
             int randomIndex = Random.Range(0, positions.Count);
+            Debug.Log($"Randomly chosen index: {randomIndex}, Position: {positions[randomIndex].position}");
             piece.GetComponent<RectTransform>().localPosition = positions[randomIndex].localPosition; // 适配UI拼图
             positions.RemoveAt(randomIndex); // 移除已用位置，防止重复
         }
