@@ -26,7 +26,7 @@ public class PuzzleManager : MonoBehaviour
         foreach (var piece in pieces)
         {
             int randomIndex = Random.Range(0, positions.Count);
-            Debug.Log($"Randomly chosen index: {randomIndex}, Position: {positions[randomIndex].position}");
+            //Debug.Log($"Randomly chosen index: {randomIndex}, Position: {positions[randomIndex].position}");
             piece.GetComponent<RectTransform>().localPosition = positions[randomIndex].localPosition; //   ≈‰UI∆¥Õº
             positions.RemoveAt(randomIndex); // “∆≥˝“—”√Œª÷√£¨∑¿÷π÷ÿ∏¥
         }
