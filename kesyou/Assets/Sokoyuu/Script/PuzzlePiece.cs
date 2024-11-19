@@ -4,56 +4,41 @@ using UnityEngine;
 
 public class PuzzlePiece : MonoBehaviour
 {
-    public Vector2 correctPosition; // ÕıÈ·µÄÆ´Í¼Î»ÖÃ£¨¾Ö²¿×ø±ê£©
-    public bool isCorrect;          // ¼ì²âÊÇ·ñ·ÅÖÃÕıÈ·
-    private Vector2 offset;         // Êó±êÓëÆ´Í¼¿éµÄÆ«ÒÆ
-    [SerializeField] private float threshold = 50f; // Èİ²î£¬ÊÊµ±Ôö´óÊÊºÏ UI ÔªËØ
+    public Vector2 correctPosition; // æ­£ç¡®çš„æ‹¼å›¾ä½ç½®
+    public bool isCorrect;          // æ£€æµ‹æ˜¯å¦æ”¾ç½®æ­£ç¡®
+    private Vector2 offset;         // ï¿½ï¿½ï¿½ï¿½ï¿½Æ´Í¼ï¿½ï¿½ï¿½Æ«ï¿½ï¿½
+    [SerializeField] private float threshold = 50f; // åç§»å¸é™„è·ç¦»
 
-    private RectTransform rectTransform;
-    private Canvas canvas; // »ñÈ¡ Canvas£¬ÓÃÓÚÕıÈ·¼ÆËã UI ÔªËØÎ»ÖÃ
+    private PuzzleManager puzzleManager; // å¼•ç”¨ PuzzleManager
 
     void Start()
     {
-        rectTransform = GetComponent<RectTransform>();
-        canvas = GetComponentInParent<Canvas>();
+        puzzleManager = FindObjectOfType<PuzzleManager>();
     }
 
-    public void SetCorrectPosition(Vector2 pos) // ÓÃÓÚ³õÊ¼»¯ÕıÈ·Î»ÖÃ
+    public void SetCorrectPosition(Vector2 pos)
     {
         correctPosition = pos;
     }
 
     void OnMouseDown()
     {
-        // ¼ÆËãÊó±êµã»÷Ê±µÄÆ«ÒÆ£¨Ê¹ÓÃ¾Ö²¿×ø±ê£©
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            rectTransform.parent as RectTransform,
-            Input.mousePosition,
-            canvas.worldCamera,
-            out Vector2 localMousePos
-        );
-        offset = (Vector2)rectTransform.localPosition - localMousePos;
+        offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 
     void OnMouseDrag()
     {
-        // ¸ù¾İÊó±êÍÏ¶¯¸üĞÂ¾Ö²¿×ø±ê
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            rectTransform.parent as RectTransform,
-            Input.mousePosition,
-            canvas.worldCamera,
-            out Vector2 localMousePos
-        );
-        rectTransform.localPosition = localMousePos + offset;
+        Vector3 newPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) + (Vector3)offset;
+        transform.position = new Vector3(newPos.x, newPos.y, 0);
     }
 
-    void OnMouseUp()
+    private void OnMouseUp()
     {
-        // ¼ì²âÊÇ·ñ½Ó½üÕıÈ·Î»ÖÃ
-        if (Vector2.Distance(rectTransform.localPosition, correctPosition) < threshold)
+        if (Vector2.Distance(transform.localPosition, correctPosition) < threshold)
         {
-            rectTransform.localPosition = correctPosition; // ×Ô¶¯Îü¸½µ½ÕıÈ·Î»ÖÃ
+            transform.localPosition = correctPosition;
             isCorrect = true;
+            puzzleManager.CheckGameStatus(); // é€šçŸ¥ PuzzleManager æ£€æŸ¥çŠ¶æ€
         }
         else
         {
