@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class MemoryController : MonoBehaviour
 {
-    public GameObject panel;  // 游戏开始时的UI面板
-    public Button startButton;  // 开始按钮
-    public Text startText;  // 显示 "Ready" 和 "Start!" 的文字
-    public GameObject[] gameObjectsToActivate;  // 游戏开始后需要激活的对象
+    public GameObject panel;
+    public Button startButton;
+    public Text startText;
+    public GameObject[] gameObjectsToActivate;
 
-    public MemoryGame memoryGame;  // 引用 MemoryGame 脚本
+    public MemoryGame memoryGame;
 
     void Start()
     {
@@ -19,14 +19,14 @@ public class MemoryController : MonoBehaviour
         startText.gameObject.SetActive(false);  
         foreach (var obj in gameObjectsToActivate)
         {
-            obj.SetActive(false);  // 初始化时禁用所有游戏对象
+            obj.SetActive(false);
         }
     }
 
     void StartGame()
     {
-        panel.SetActive(false);  // 隐藏开始面板
-        StartCoroutine(StartCountdown());  // 开始倒计时
+        panel.SetActive(false);
+        StartCoroutine(StartCountdown());
     }
 
     IEnumerator StartCountdown()
@@ -43,12 +43,12 @@ public class MemoryController : MonoBehaviour
 
         foreach (var obj in gameObjectsToActivate)
         {
-            obj.SetActive(true);  // 激活所有游戏对象
+            obj.SetActive(true);
         }
 
-        yield return new WaitForSeconds(0.5f);  // 确保激活后再开始游戏
+        yield return new WaitForSeconds(0.5f);
 
-        memoryGame.SelectRandomColors();  // 选择随机颜色
-        memoryGame.StartGame();  // 开始显示颜色序列
+        memoryGame.SelectRandomColors();
+        memoryGame.StartGame(); 
     }        
 }
