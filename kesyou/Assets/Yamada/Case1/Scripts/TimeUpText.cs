@@ -1,55 +1,39 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
 
 public class TimeUpText : MonoBehaviour
 {
-    // タイマーの初期値（秒）
     public float timer = 10.0f;
-
-    // タイマーを表示するUI Text
     public Text timerText;
-
-    // 結果を表示するUI Text
     public Text resultText;
+    public Text startCountdownText;
 
-    // タイマーが終了したかのフラグ
-    private bool isTimerEnded = false;
-
-    // EnemyのPrefab
     public GameObject enemyPrefab;
-
-    // スポーン済みの敵を管理するリスト
     private List<GameObject> spawnedEnemies = new List<GameObject>();
-
-    // Enemyをスポーンさせる数
     public int enemyCount = 6;
-
-    // スポーン位置の範囲
     public Vector2 spawnRange = new Vector2(-10, 10);
 
-    // スポーン済みかどうかのフラグ
+    private bool isTimerEnded = false;
     private bool enemiesSpawned = false;
+    private bool gameStarted = false; // ゲーム開始フラグ
 
     void Start()
     {
-        // シーン開始時にEnemyをスポーン
-        if (!enemiesSpawned)
-        {
-            SpawnEnemies();
-            enemiesSpawned = true;
-        }
-
+        // 最初にカウントダウンを開始
+        StartCoroutine(ShowCountdownAndStartGame());
     }
 
     void Update()
     {
-        // タイマーが終了していない場合、減少させる
+        // ゲームが始まっていない場合は処理をスキップ
+        if (!gameStarted) return;
+
         if (!isTimerEnded)
         {
             timer -= Time.deltaTime;
 
-            // タイマーを0以下にしない
             if (timer <= 0)
             {
                 timer = 0;
@@ -62,7 +46,6 @@ public class TimeUpText : MonoBehaviour
                 }
             }
 
-            // タイマーをUIに反映
             UpdateTimerUI();
         }
 
@@ -74,51 +57,69 @@ public class TimeUpText : MonoBehaviour
         }
     }
 
-    // UIのテキストを更新
     void UpdateTimerUI()
     {
         timerText.text = "タイマー: " + Mathf.FloorToInt(timer).ToString() + "秒";
     }
 
-    // 結果を表示してタイマーを非表示にする
     void ShowResult(string message)
     {
-        // 結果テキストを表示
         resultText.text = message;
         resultText.gameObject.SetActive(true);
-
-        // タイマーを非表示
         timerText.gameObject.SetActive(false);
     }
 
-    // Enemyをスポーンさせる
     void SpawnEnemies()
     {
         for (int i = 0; i < enemyCount; i++)
         {
-            Vector3 spawnPosition = new Vector3(
-                Random.Range(spawnRange.x, spawnRange.y),
-                0,
-                Random.Range(spawnRange.x, spawnRange.y)
-            );
-
-            // Enemyを生成してリストに追加
+            Vector3 spawnPosition = GenerateRandomPositionInCircle();
             GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-
-            // Enemyにヒット時のコールバックを設定するスクリプトをアタッチ
             enemy.AddComponent<EnemyDe>().OnEnemyDestroyed = OnEnemyDestroyed;
-
             spawnedEnemies.Add(enemy);
         }
+        enemiesSpawned = true;
     }
 
-    // 敵が破壊されたときの処理
+    Vector3 GenerateRandomPositionInCircle()
+    {
+        float radius = Mathf.Abs(spawnRange.y - spawnRange.x) / 2;
+        Vector3 center = Vector3.zero;
+        float angle = Random.Range(0f, 2f * Mathf.PI);
+        float distance = Mathf.Sqrt(Random.Range(0f, 1f)) * radius;
+        float x = center.x + distance * Mathf.Cos(angle);
+        float y = center.y + distance * Mathf.Sin(angle);
+        return new Vector3(x, y, 0); // zを固定
+    }
+
     void OnEnemyDestroyed(GameObject enemy)
     {
-        // リストから削除
         if (spawnedEnemies.Contains(enemy))
         {
             spawnedEnemies.Remove(enemy);
         }
+    }
+
+    IEnumerator ShowCountdownAndStartGame()
+    {
+        float countdown = 5.0f;
+
+        // カウントダウンを表示
+        while (countdown > 0)
+        {
+            startCountdownText.text = "開始まで: " + Mathf.CeilToInt(countdown).ToString() + "秒\n丸の中に出てくる赤い〇をクリックして！";
+            yield return new WaitForSeconds(1.0f);
+            countdown -= 1.0f;
+        }
+
+        // カウントダウンUIを非表示
+        startCountdownText.gameObject.SetActive(false);
+
+        // 敵をスポーンしてゲームを開始
+        SpawnEnemies();
+        gameStarted = true; // ゲーム開始フラグを有効化
+
+        // タイマーを表示
+        timerText.gameObject.SetActive(true);
     }
 }
