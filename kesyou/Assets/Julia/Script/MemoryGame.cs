@@ -8,6 +8,8 @@ public class MemoryGame : MonoBehaviour
     public Image displayImage;
     public Button[] colorButtons;
     public Sprite[] colorSprites;
+    public Text showResult;
+    private int stepNow=0;
 
     private List<int> selectedColors = new List<int>();
     private List<int> playerInput = new List<int>();
@@ -18,9 +20,10 @@ public class MemoryGame : MonoBehaviour
     }
 
     public void StartGame()
-    {
+    {        
         selectedColors.Clear();
-        playerInput.Clear();
+        showResult.text="";        
+        playerInput.Clear();        
         SelectRandomColors();
         StartCoroutine(DisplayColorsSequence());
     }
@@ -53,8 +56,7 @@ public class MemoryGame : MonoBehaviour
     {
         
         if (colorIndex < 0 || colorIndex >= colorSprites.Length)
-        {
-            Debug.LogError($"Invalid color index: {colorIndex}");
+        {            
             continue;
         }
         
@@ -105,8 +107,7 @@ public class MemoryGame : MonoBehaviour
     else
     {
         Debug.Log("lose");
-    }    
-   
+    }
 }
     
 

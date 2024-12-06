@@ -10,7 +10,7 @@ public class MemoryController : MonoBehaviour
     public Text startText;
     public GameObject[] gameObjectsToActivate;
 
-    public MemoryGame memoryGame;
+    public MemoryVer2 memoryGame;
 
     void Start()
     {
@@ -48,7 +48,7 @@ public class MemoryController : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        memoryGame.SelectRandomColors();
+        memoryGame.GenerateRanColor();
         memoryGame.StartGame(); 
     }        
 }
