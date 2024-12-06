@@ -25,7 +25,7 @@ public class MemoryGame : MonoBehaviour
         StartCoroutine(DisplayColorsSequence());
     }
 
-    void SelectRandomColors()
+    public void SelectRandomColors()
     {
         while (selectedColors.Count < 4)
         {
@@ -38,17 +38,40 @@ public class MemoryGame : MonoBehaviour
     }
 
     IEnumerator DisplayColorsSequence()
+{
+    
+    displayImage.sprite = null;
+    
+    
+    EnableColorButtons(false);
+    
+    
+    yield return new WaitForSeconds(1f);
+    
+    
+    foreach (int colorIndex in selectedColors)
     {
-        foreach (int colorIndex in selectedColors)
+        
+        if (colorIndex < 0 || colorIndex >= colorSprites.Length)
         {
-            displayImage.sprite = colorSprites[colorIndex];
-            yield return new WaitForSeconds(1f);
-            displayImage.sprite = null;  
-            yield return new WaitForSeconds(0.5f);
+            Debug.LogError($"Invalid color index: {colorIndex}");
+            continue;
         }
-
-        EnableColorButtons(true);
+        
+        
+        displayImage.sprite = colorSprites[colorIndex];
+        yield return new WaitForSeconds(1f);
+                
+        displayImage.sprite = null;
+        yield return new WaitForSeconds(0.5f);
     }
+    
+    displayImage.sprite = null;
+   
+    yield return new WaitForSeconds(0.5f);
+   
+    EnableColorButtons(true);
+}
 
     public void OnColorButtonClick(int buttonIndex)
     {
@@ -61,26 +84,31 @@ public class MemoryGame : MonoBehaviour
     }
 
     void CheckPlayerInput()
+{
+    bool isCorrect = true;
+    
+    
+    for (int i = 0; i < selectedColors.Count; i++)
     {
-        for (int i = 0; i < selectedColors.Count; i++)
+        if (playerInput[i] != selectedColors[i])
         {
-            if (playerInput[i] != selectedColors[i])
-            {
-                Debug.Log("lose");
-                RestartGame();
-                return;
-            }
+            isCorrect = false;
+            break;
         }
-
-        Debug.Log("win");
-        RestartGame();
     }
-
-    void RestartGame()
+    
+    
+    if (isCorrect)
     {
-        EnableColorButtons(false);
-        StartGame();
+        Debug.Log("win");
     }
+    else
+    {
+        Debug.Log("lose");
+    }    
+   
+}
+    
 
     void EnableColorButtons(bool enable)
     {
@@ -90,3 +118,4 @@ public class MemoryGame : MonoBehaviour
         }
     }
 }
+

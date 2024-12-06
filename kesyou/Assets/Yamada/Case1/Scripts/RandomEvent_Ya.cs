@@ -1,16 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 
 public class RandomEvent_Ya : MonoBehaviour
 {
     public float speed = 2f; // 移動速度
     public float changeTime = 1f; // 移動方向を変える時間
     public float timeLimit = 10f; // 時間制限（10秒）
-    public TextMeshProUGUI timerText; // UIのTextコンポーネントを参照
-    public Text resultText; // 結果を表示するテキスト
 
 
     private Vector2 targetPosition;
@@ -32,10 +28,7 @@ public class RandomEvent_Ya : MonoBehaviour
         {
             Destroy(gameObject);
             Debug.Log("時間制限を超えたのでオブジェクトは破壊されました");
-            resultText.text = "遅い";
         }
-
-        UpdateTimerUI();
     }
 
     private void SetRandomTargetPosition()
@@ -69,15 +62,5 @@ public class RandomEvent_Ya : MonoBehaviour
     {
         Destroy(gameObject);
         Debug.Log("倒した");
-    }
-
-    // 残り時間をUIのTextに表示するメソッド
-    private void UpdateTimerUI()
-    {
-        if (timerText != null)
-        {
-            float remainingTime = timeLimit - timer;  // 残り時間を計算
-            timerText.text = "残り時間: " + Mathf.Max(0f, remainingTime).ToString("F2") + "秒";  // 小数点以下2桁まで表示
-        }
     }
 }

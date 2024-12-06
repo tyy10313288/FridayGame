@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MemoryController : MonoBehaviour
 {
     public GameObject panel;
-    public Button startButton;    
+    public Button startButton;
     public Text startText;
     public GameObject[] gameObjectsToActivate;
 
@@ -21,7 +21,6 @@ public class MemoryController : MonoBehaviour
         {
             obj.SetActive(false);
         }
-        
     }
 
     void StartGame()
@@ -42,18 +41,14 @@ public class MemoryController : MonoBehaviour
 
         startText.gameObject.SetActive(false);
 
-        
         foreach (var obj in gameObjectsToActivate)
         {
             obj.SetActive(true);
         }
-        
 
-        memoryGame.StartGame();
-    }
+        yield return new WaitForSeconds(0.5f);
 
-        
-        
-    }
-    
-
+        memoryGame.SelectRandomColors();
+        memoryGame.StartGame(); 
+    }        
+}
