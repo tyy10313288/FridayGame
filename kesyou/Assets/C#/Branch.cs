@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static Unity.Collections.AllocatorManager;
 
 public class Branch : MonoBehaviour
@@ -27,10 +29,12 @@ public class Branch : MonoBehaviour
                 Invoke("White", 0.1f);
                 break;
             case 3:
+                Invoke("Green", 0.1f);
                 break;
             case 4:
-                break;
+                break;  
             case 5:
+                Invoke("Eyeshadow", 0.1f);
                 break;
             case 6:
                 break;
@@ -39,6 +43,7 @@ public class Branch : MonoBehaviour
             case 8:
                 break;
             case 9:
+                Invoke("Tactilesense", 0.1f);
                 break;
         }
     }
@@ -47,8 +52,6 @@ public class Branch : MonoBehaviour
     {
         GameObject des= (GameObject)Resources.Load("Destroy");
         Instantiate(des, new Vector2(0, 0), Quaternion.identity);
-
-
     }
     void Fand()
     {
@@ -64,6 +67,9 @@ public class Branch : MonoBehaviour
     }
     public void Usually()
     {
+        GameObject eyeshadow = (GameObject)Resources.Load("アイシャドウ");
+
+        Instantiate(eyeshadow, new Vector2(0, 0), Quaternion.identity);
     }
     public void White()
     {
@@ -75,11 +81,29 @@ public class Branch : MonoBehaviour
     }
     public void Green()
     {
+        GameObject ear = (GameObject)Resources.Load("耳");
+        GameObject tactilesense = (GameObject)Resources.Load("触覚");
 
+        Instantiate(ear, new Vector2(3, 0), Quaternion.identity);
+        Instantiate(tactilesense, new Vector2(-3, 0), Quaternion.identity);
     }
     public void Black()
     {
 
+    }
+    public void Eyeshadow()
+    {
+        GameObject pink = (GameObject)Resources.Load("ピンク");
+        GameObject purple = (GameObject)Resources.Load("紫");
+
+        Instantiate(pink, new Vector2(3, 0), Quaternion.identity);
+        Instantiate(purple, new Vector2(-3, 0), Quaternion.identity);
+    }
+    public void Tactilesense() 
+    {
+        GameObject piccolo = (GameObject)Resources.Load("ピッコロ");
+
+        Instantiate(piccolo, new Vector2(0, 0), Quaternion.identity);
     }
 
 
