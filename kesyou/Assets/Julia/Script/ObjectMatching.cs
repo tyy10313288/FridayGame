@@ -11,16 +11,26 @@ public class ObjectMatching : MonoBehaviour
      public float moveSpeed = 2f;          // Speed of the moving object
     public float targetThreshold = 0.1f;
     public float postTargetSpeed = 2f;  
-    public Vector2 postTargetDirection;     
+    public Vector2 postTargetDirection;
+    public Transform[] spawnPoints;
+    private Vector2 movementDirection;
+    public Transform[] detectPoint;     
 
     private bool isMoving = true;         // Controls if the object is moving   
     private Vector2 targetPosition;       // Position of the target area
      private bool hasPassedTarget = false;
+     private Vector2 originalDirection;
+     private Camera mainCamera;
     
     void Start()
     {
-        // Initialize the target position as the center of the target area
+        SpawnAtRandomPoint();
+        mainCamera = Camera.main;        
         targetPosition = targetArea.transform.position;
+        movementDirection = (targetPosition - (Vector2)movingObject.transform.position).normalized;
+        
+        
+       
     }
 
     void Update()
@@ -28,22 +38,44 @@ public class ObjectMatching : MonoBehaviour
         
         if (isMoving)
         {
-            if (!hasPassedTarget)
-            {
-                MoveTowardTarget();
-            }
-            else
-            {
-                ContinueMoving();
-            }
+          
+            MoveObject();
+            Respawn();
         }
-
-        // Stop the object when in target area and left mouse button is clicked
+        
         if (Input.GetMouseButtonDown(0))
         {
             StopObject();
-            CalculateMatchPercentage();
+            DetectingPoint();
         }
+    }
+    private void MoveObject()
+    {        
+        movingObject.transform.Translate(movementDirection * moveSpeed * Time.deltaTime);
+    }
+    private void Respawn()
+    {
+        Vector3 viewportPosition=mainCamera.WorldToViewportPoint(movingObject.transform.position);
+        if(viewportPosition.x<-0.2f || viewportPosition.x>1.2f || viewportPosition.y<-0.2f || viewportPosition.y>1.2f)
+        {
+            SpawnAtRandomPoint();
+            isMoving=true;
+            hasPassedTarget=false;
+        }
+    }
+    private void SpawnAtRandomPoint()
+    {
+        // Ensure there are spawn points defined
+        if (spawnPoints.Length > 0)
+        {
+            // Select a random spawn point
+            int randomIndex = Random.Range(0, spawnPoints.Length);
+            Transform spawnPoint = spawnPoints[randomIndex];
+
+            movingObject.transform.position = spawnPoint.position;
+            movementDirection = (targetPosition - (Vector2)movingObject.transform.position).normalized;
+        }
+        
     }
     private void MoveTowardTarget()
     {
@@ -66,70 +98,35 @@ public class ObjectMatching : MonoBehaviour
     {
         // Move the object in the post-target direction
         movingObject.transform.Translate(postTargetDirection * postTargetSpeed * Time.deltaTime);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject == targetArea)
-        {
-            CalculateMatchPercentage();
-        }
-    } 
+    }   
 
     private void StopObject()
     {
         isMoving = false;
     }
-
-    private void CalculateMatchPercentage()
+    private void DetectingPoint()
     {
-        // Get colliders of the moving object and the target area
-        Collider2D movingObjectCollider = movingObject.GetComponent<Collider2D>();
-        Collider2D targetAreaCollider = targetArea.GetComponent<Collider2D>();
-
-        if (movingObjectCollider != null && targetAreaCollider != null)
+        int totalPoint=detectPoint.Length;
+        int touchingPoint=0;
+        if(!isMoving)
         {
-            // Calculate the overlap area
-            Bounds movingBounds = movingObjectCollider.bounds;
-            Bounds targetBounds = targetAreaCollider.bounds;
+        
+        foreach (Transform point in detectPoint)
+        {
+            Collider2D hitCollider = Physics2D.OverlapPoint(point.position);
 
-            Rect movingRect = new Rect(movingBounds.min.x, movingBounds.min.y, movingBounds.size.x, movingBounds.size.y);
-            Rect targetRect = new Rect(targetBounds.min.x, targetBounds.min.y, targetBounds.size.x, targetBounds.size.y);
-
-            Rect overlap = RectIntersection(movingRect, targetRect);
-
-            if (overlap.width > 0 && overlap.height > 0)
+            if (hitCollider != null && hitCollider.gameObject == movingObject)
             {
-                // Calculate percentage overlap
-                float overlapArea = overlap.width * overlap.height;
-                float targetAreaSize = targetRect.width * targetRect.height;
-
-                float matchPercentage = (overlapArea / targetAreaSize) * 100f;
-                resultText.text = "Match Percentage: " + matchPercentage.ToString("F2") + "%";
-            }
-            else
-            {
-                resultText.text = "No overlap detected.";
+                touchingPoint++; // Increment count if the point is overlapping the moving object
             }
         }
+        resultText.text=touchingPoint.ToString();
+        }
+        
+
     }
 
-    private Rect RectIntersection(Rect a, Rect b)
-    {
-        float xMin = Mathf.Max(a.xMin, b.xMin);
-        float xMax = Mathf.Min(a.xMax, b.xMax);
-        float yMin = Mathf.Max(a.yMin, b.yMin);
-        float yMax = Mathf.Min(a.yMax, b.yMax);
-
-        if (xMax >= xMin && yMax >= yMin)
-        {
-            return new Rect(xMin, yMin, xMax - xMin, yMax - yMin);
-        }
-        else
-        {
-            return Rect.zero; // No intersection
-        }
-    }
-    
-    
 }
+    
+    
+

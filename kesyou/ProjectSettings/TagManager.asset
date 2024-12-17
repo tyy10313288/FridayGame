@@ -6,6 +6,7 @@ TagManager:
   tags:
   - kesyou
   - ke
+  - detectpoint
   layers:
   - Default
   - TransparentFX
