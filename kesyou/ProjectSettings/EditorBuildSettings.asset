@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/bunki.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Julia/EyeShadow.unity
+    guid: ef9e72d20c6f50e4983f1aeb60a9b761
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 92b47e370cc46a543b3eb2301a55d213
   m_configObjects: {}

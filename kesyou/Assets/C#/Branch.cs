@@ -4,17 +4,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using static Unity.Collections.AllocatorManager;
+using UnityEngine.SceneManagement;
 
 public class Branch : MonoBehaviour
 {
     public int a;
+    public int _event;
 
     void Start()
     {
-        GameObject fand = (GameObject)Resources.Load("ファンデーション");
-        Instantiate(fand, new Vector2(0, 0), Quaternion.identity);
-    }
+        _event = PlayerPrefs.GetInt("EVENT", 0);
 
+        if(_event == 1)
+        {
+            Invoke("Eyeshadow", 0f);
+        }
+        else
+        {
+            Invoke("_Start", 0f);
+        }
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            PlayerPrefs.SetInt("EVENT", 0);
+            PlayerPrefs.Save();
+        }
+
+    }
     public void branch()
     {
         switch (a)
@@ -35,7 +53,9 @@ public class Branch : MonoBehaviour
                 Invoke("Black1", 0.1f);
                 break;  
             case 5:
-                Invoke("Eyeshadow", 0.1f);
+                PlayerPrefs.SetInt("EVENT",1);  
+                PlayerPrefs.Save();
+                SceneManager.LoadScene("EyeShadow");
                 break;
             case 6:
                 Invoke("Black2", 0.1f);
@@ -73,6 +93,11 @@ public class Branch : MonoBehaviour
                 Invoke("Bassavasa", 0.1f);
                 break;
         }
+    }
+    public void _Start()
+    {
+        GameObject fand = (GameObject)Resources.Load("ファンデーション");
+        Instantiate(fand, new Vector2(0, 0), Quaternion.identity);
     }
 
     public void destroy()

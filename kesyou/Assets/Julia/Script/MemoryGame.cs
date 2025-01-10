@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MemoryGame : MonoBehaviour
 {
@@ -102,11 +103,11 @@ public class MemoryGame : MonoBehaviour
     
     if (isCorrect)
     {
-        Debug.Log("win");
+        SceneManager.LoadScene("bunki");
     }
     else
     {
-        Debug.Log("lose");
+        SceneManager.LoadScene("GameOver");
     }
 }
     
