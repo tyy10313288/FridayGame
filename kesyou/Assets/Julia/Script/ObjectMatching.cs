@@ -8,7 +8,8 @@ public class ObjectMatching : MonoBehaviour
     public GameObject movingObject;    // Reference to the moving object
     public GameObject targetArea;      // Reference to the target area
     public Text resultText;            // UI Text to display the match percentage    
-     public float moveSpeed = 2f;          // Speed of the moving object
+    public Text showResult;
+    public float moveSpeed = 2f;          // Speed of the moving object
     public float targetThreshold = 0.1f;
     public float postTargetSpeed = 2f;  
     public Vector2 postTargetDirection;
@@ -27,8 +28,7 @@ public class ObjectMatching : MonoBehaviour
         SpawnAtRandomPoint();
         mainCamera = Camera.main;        
         targetPosition = targetArea.transform.position;
-        movementDirection = (targetPosition - (Vector2)movingObject.transform.position).normalized;
-        
+        movementDirection = (targetPosition - (Vector2)movingObject.transform.position).normalized;     
         
        
     }
@@ -104,29 +104,57 @@ public class ObjectMatching : MonoBehaviour
     {
         isMoving = false;
     }
+
     private void DetectingPoint()
+{
+    int totalPoint = detectPoint.Length;
+    int touchingPoint = 0;    
+
+    if (!isMoving)  // Only check when the object is stopped
     {
-        int totalPoint=detectPoint.Length;
-        int touchingPoint=0;
-        if(!isMoving)
-        {
-        
+        // Get the moving object's collider
+        Collider2D movingObjectCollider = movingObject.GetComponent<Collider2D>();
+        if (movingObjectCollider == null) return; // Exit if no Collider2D is found
+
+        // Sync physics (if needed) and get the bounds
+        Physics2D.SyncTransforms();
+        Bounds movingBounds = movingObjectCollider.bounds;
+        Debug.Log($"Bounds Center: {movingBounds.center}, Min: {movingBounds.min}, Max: {movingBounds.max}");
+
+        // Loop through each DetectPoint and check if it's inside the bounds
         foreach (Transform point in detectPoint)
-        {
-            Collider2D hitCollider = Physics2D.OverlapPoint(point.position);
+{
+    Vector3 pointPosition = point.position;
 
-            if (hitCollider != null && hitCollider.gameObject == movingObject)
-            {
-                touchingPoint++; // Increment count if the point is overlapping the moving object
-            }
-        }
-        resultText.text=touchingPoint.ToString();
-        }
-        
+    float margin = 0.001f; // Small tolerance margin
 
+    if (pointPosition.x > movingBounds.min.x - margin &&
+        pointPosition.x < movingBounds.max.x + margin &&
+        pointPosition.y > movingBounds.min.y - margin &&
+        pointPosition.y < movingBounds.max.y + margin)
+    {
+        touchingPoint++;
     }
+}
+if(touchingPoint>7)
+{
+    showResult.text="Win";
 
 }
+
+        // Display the result
+        resultText.text =touchingPoint.ToString();
+    }
+}
+}
+
+        
+        
+        
+
+    
+
+
     
     
 
