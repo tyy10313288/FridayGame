@@ -6,10 +6,12 @@ using UnityEngine.EventSystems;
 public class Kesyou : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private int A;
+    private AudioSource audioSource;
     Branch script;
     private void Start()
     {
         script = GameObject.Find("branch").GetComponent<Branch>();
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -74,6 +76,7 @@ public class Kesyou : MonoBehaviour, IPointerClickHandler
                 break;
 
         }
+        audioSource.Play();
         script.destroy();
         script.branch();
     }
