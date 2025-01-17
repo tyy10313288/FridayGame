@@ -3192,8 +3192,8 @@ MonoBehaviour:
   resultText: {fileID: 1947216041}
   timerText: {fileID: 1380614948}
   countdownTime: 10
-  failSE: {fileID: 8300000, guid: bc79dea34680b2a45807aae379e55ab5, type: 3}
-  successSE: {fileID: 8300000, guid: 4fa4e2c46b6164745aa3d4798ee053e1, type: 3}
+  failSE: {fileID: 8300000, guid: 644dfa467de8037438c1b241b20f4a20, type: 3}
+  successSE: {fileID: 8300000, guid: a5c90215205aafc4f917e9415eca8f77, type: 3}
   audioSource: {fileID: 1380614950}
 --- !u!114 &1380614948
 MonoBehaviour:
