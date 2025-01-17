@@ -17,18 +17,26 @@ public class ObjectMatching : MonoBehaviour
     private Vector2 movementDirection;
     public Transform[] detectPoint;     
 
-    private bool isMoving = true;         // Controls if the object is moving   
+    public bool isMoving = true;         // Controls if the object is moving   
     private Vector2 targetPosition;       // Position of the target area
-     private bool hasPassedTarget = false;
-     private Vector2 originalDirection;
-     private Camera mainCamera;
+    private bool hasPassedTarget = false;
+    private Vector2 originalDirection;
+    private Camera mainCamera;
+
+    public AudioClip failSE;
+    public AudioClip successSE;
+    public AudioSource audioSource;
+    
+    
     
     void Start()
     {
         SpawnAtRandomPoint();
         mainCamera = Camera.main;        
         targetPosition = targetArea.transform.position;
-        movementDirection = (targetPosition - (Vector2)movingObject.transform.position).normalized;     
+        movementDirection = (targetPosition - (Vector2)movingObject.transform.position).normalized;
+        audioSource = GetComponent<AudioSource>();    
+
         
        
     }
@@ -139,8 +147,14 @@ public class ObjectMatching : MonoBehaviour
 if(touchingPoint>7)
 {
     showResult.text="Win";
+    audioSource.PlayOneShot(successSE);   
 
 }
+else
+{
+    audioSource.PlayOneShot(failSE);
+}
+
 
         // Display the result
         resultText.text =touchingPoint.ToString();

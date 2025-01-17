@@ -6,7 +6,11 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     public GameObject panel;
+    public GameObject SettingPanel;
+
     public Button startButton;
+    public Button SettingButton;
+
     public CountDownTimer timerScript;
     public Text startText;
     public GameObject[] gameObjectsToActivate;
@@ -14,19 +18,29 @@ public class GameController : MonoBehaviour
     void Start()
     {
         panel.SetActive(true);
+        SettingPanel.SetActive(false);
         startButton.onClick.AddListener(StartGame);
-        startText.gameObject.SetActive(false);  
+        startText.gameObject.SetActive(false);      
         foreach (var obj in gameObjectsToActivate)
         {
             obj.SetActive(false);
         }
         timerScript.enabled = false;
     }
+    void Update()
+    {
+        SettingButton.onClick.AddListener(Setting);
+    }
 
     void StartGame()
     {
         panel.SetActive(false);
         StartCoroutine(StartCountdown());
+    }
+
+    void Setting()
+    {
+        SettingPanel.SetActive(true);
     }
 
     IEnumerator StartCountdown()

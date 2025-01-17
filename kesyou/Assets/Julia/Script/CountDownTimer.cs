@@ -10,12 +10,16 @@ public class CountDownTimer : MonoBehaviour
     private float startTime;
     public float countdownTime = 60;
     public static bool canClick = true;
-    
+
+    public AudioClip failSE;
+    public AudioClip successSE;
+    public AudioSource audioSource;    
 
     void Start()
     {
         startTime = Time.time;
         BeginCountdown();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -44,10 +48,12 @@ public class CountDownTimer : MonoBehaviour
         if (remainingKes.Length == 0)
         {
             resultText.text = "Win";
+            audioSource.PlayOneShot(successSE);
         }
         else
         {
             resultText.text = "Lose";
+            audioSource.PlayOneShot(failSE);
         }
     }
     void CheckObjectsDestroyed()
@@ -57,6 +63,7 @@ public class CountDownTimer : MonoBehaviour
     {
         canClick = false;
         resultText.text = "Win";
+        audioSource.PlayOneShot(successSE);
     }
 }
 

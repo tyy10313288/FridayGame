@@ -13,12 +13,16 @@ public class MemoryVer2 : MonoBehaviour
     public Sprite[] colorSprite;      
 
     private List<int> showedColor = new List<int>(); 
-    private int currentStep = 0;       
+    private int currentStep = 0;
+
+    public AudioClip failSE;
+    public AudioClip successSE;
+    public AudioSource audioSource;
 
     void Start()
     {
         StartGame();
-        
+        audioSource = GetComponent<AudioSource>();        
         
         for (int i = 0; i < playerClick.Length; i++)
         {
@@ -72,6 +76,7 @@ public class MemoryVer2 : MonoBehaviour
             else
             {
                 showResult.text = "Correct!";
+                audioSource.PlayOneShot(successSE);
                 SceneManager.LoadScene("bunki");
                 EnableColorButtons(false);
             }
@@ -79,7 +84,8 @@ public class MemoryVer2 : MonoBehaviour
         else
         {
             showResult.text = "Wrong!";
-            SceneManager.LoadScene("GameOver");
+            audioSource.PlayOneShot(failSE);
+            //SceneManager.LoadScene("GameOver");
 
         }
     }
