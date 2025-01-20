@@ -17,11 +17,11 @@ public class Branch : MonoBehaviour
 
         if(_event == 1)
         {
-            Invoke("Eyeshadow", 0f);
+            Invoke("Eyeshadow", 0);
         }
         else
         {
-            Invoke("_Start", 0f);
+            Invoke("_Start", 0);
         }
     }
     public void branch()
@@ -45,13 +45,13 @@ public class Branch : MonoBehaviour
                 break;  
             case 5:
                 PlayerPrefs.SetInt("EVENT",1);  
-                PlayerPrefs.Save();
                 SceneManager.LoadScene("EyeShadow");
                 break;
             case 6:
                 Invoke("Black2", 0.1f);
                 break;
             case 7:
+                Invoke("Red", 0.1f);
                 break;
             case 8:
                 Invoke("Ear", 0.1f);
