@@ -85,7 +85,7 @@ public class MemoryVer2 : MonoBehaviour
         {
             showResult.text = "Wrong!";
             audioSource.PlayOneShot(failSE);
-            //SceneManager.LoadScene("GameOver");
+            SceneManager.LoadScene("GameOver");
 
         }
     }

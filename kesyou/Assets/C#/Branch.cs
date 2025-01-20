@@ -24,15 +24,6 @@ public class Branch : MonoBehaviour
             Invoke("_Start", 0f);
         }
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            PlayerPrefs.SetInt("EVENT", 0);
-            PlayerPrefs.Save();
-        }
-
-    }
     public void branch()
     {
         switch (a)

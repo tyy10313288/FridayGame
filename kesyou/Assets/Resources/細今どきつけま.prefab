@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   A: 19
+  setting: 0
 --- !u!82 &-5695944566155298816
 AudioSource:
   m_ObjectHideFlags: 0
