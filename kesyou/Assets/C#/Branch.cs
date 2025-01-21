@@ -10,12 +10,15 @@ public class Branch : MonoBehaviour
 {
     public int a;
     public int _event;
+    float delaytime = 0.1f;
+    int _result;
 
     void Start()
     {
         _event = PlayerPrefs.GetInt("EVENT", 0);
+        PlayerPrefs.SetInt("RESULT", 0);
 
-        if(_event == 1)
+        if (_event == 1)
         {
             Invoke("Eyeshadow", 0);
         }
@@ -29,59 +32,60 @@ public class Branch : MonoBehaviour
         switch (a)
         {
             case 0:
-                Invoke("Fand", 0.1f);
+                Invoke("Fand", delaytime);
                 break;
             case 1:
-                Invoke("Usually", 0.1F);
+                Invoke("Usually", delaytime);
                 break;
             case 2:
-                Invoke("White", 0.1f);
+                Invoke("White", delaytime);
                 break;
             case 3:
-                Invoke("Green", 0.1f);
+                Invoke("Green", delaytime);
                 break;
             case 4:
-                Invoke("Black1", 0.1f);
+                Invoke("Black1", delaytime);
                 break;  
             case 5:
                 PlayerPrefs.SetInt("EVENT",1);  
                 SceneManager.LoadScene("EyeShadow");
                 break;
             case 6:
-                Invoke("Black2", 0.1f);
+                Invoke("Black2", delaytime);
                 break;
             case 7:
-                Invoke("Red", 0.1f);
+                Invoke("Red", delaytime);
                 break;
             case 8:
-                Invoke("Ear", 0.1f);
+                Invoke("Ear", delaytime);
                 break;
             case 9:
-                Invoke("Tactilesense", 0.1f);
+                Invoke("Tactilesense", delaytime);
                 break;
             case 10:
                 break;
             case 11:
-                Invoke("Pink", 0.1f);
+                Invoke("Pink", delaytime);
                 break;
             case 12:
                 break;
             case 13:
-                Invoke("Lip", 0.1f);
+                Invoke("Lip", delaytime);
                 break;
             case 14:
                 break;
             case 15:
-                Invoke("Falseeyelashes", 0.1f);
+                Invoke("Falseeyelashes", delaytime);
                 break;
             case 18:
-                Invoke("Purple2", 0.1f);
+                Invoke("Purple2", delaytime);
                 break;
             case 19:
-                Invoke("Thinfalseeyelashes", 0.1f);
+                _result = 1;    
+                Invoke("Result", delaytime);
                 break;
             case 20:
-                Invoke("Bassavasa", 0.1f);
+                Invoke("Bassavasa", delaytime);
                 break;
         }
     }
@@ -190,16 +194,15 @@ public class Branch : MonoBehaviour
         Instantiate(thinfalseeyelashes, new Vector2(-3, 0), Quaternion.identity);
         Instantiate(bassavasa, new Vector2(3, 0), Quaternion.identity);
     }
-    public void Thinfalseeyelashes()
-    {
-        GameObject ordinarygirl = (GameObject)Resources.Load("ïÅí ÇÃèóÇÃéq");
-
-        Instantiate(ordinarygirl, new Vector2(0, 0), Quaternion.identity);
-    }
     public void Bassavasa()
     {
         GameObject whitegal = (GameObject)Resources.Load("îíÉMÉÉÉã");
 
         Instantiate(whitegal, new Vector2(0, 0), Quaternion.identity);
+    }
+    public void Result()
+    {
+        PlayerPrefs.SetInt("RESULT", _result);
+        SceneManager.LoadScene("Result");
     }
 }
