@@ -68,6 +68,7 @@ public class Branch : MonoBehaviour
                 Invoke("Pink", delaytime);
                 break;
             case 12:
+                Invoke("Purple1", delaytime);
                 break;
             case 13:
                 Invoke("Lip", delaytime);
@@ -86,6 +87,14 @@ public class Branch : MonoBehaviour
                 break;
             case 20:
                 Invoke("Bassavasa", delaytime);
+                break;
+            case 21:
+                _result = 3;
+                Invoke("Result", delaytime);
+                break;
+            case 22:
+                _result = 4;
+                Invoke("Result", delaytime);
                 break;
         }
     }
@@ -173,6 +182,14 @@ public class Branch : MonoBehaviour
 
         Instantiate(black3, new Vector2(-3, 0), Quaternion.identity);
         Instantiate(purple2, new Vector2(3, 0), Quaternion.identity);
+    }
+    public void Purple1()
+    {
+        GameObject thick = (GameObject)Resources.Load("ëæ");
+        GameObject thin = (GameObject)Resources.Load("ç◊");
+
+        Instantiate(thick, new Vector2(-3, 0), Quaternion.identity);
+        Instantiate(thin, new Vector2(3, 0), Quaternion.identity);
     }
     public void Purple2()
     {
