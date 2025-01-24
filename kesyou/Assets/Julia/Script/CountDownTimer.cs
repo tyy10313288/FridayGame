@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CountDownTimer : MonoBehaviour
 {
@@ -47,12 +48,12 @@ public class CountDownTimer : MonoBehaviour
         GameObject[] remainingKes = GameObject.FindGameObjectsWithTag("ke");
         if (remainingKes.Length == 0)
         {
-            resultText.text = "Win";
+            SceneManager.LoadScene("bunki");
             audioSource.PlayOneShot(successSE);
         }
         else
         {
-            resultText.text = "Lose";
+            SceneManager.LoadScene("GameOver");
             audioSource.PlayOneShot(failSE);
         }
     }
@@ -62,7 +63,7 @@ public class CountDownTimer : MonoBehaviour
     if (objects.Length == 0)
     {
         canClick = false;
-        resultText.text = "Win";
+        SceneManager.LoadScene("bunki");
         audioSource.PlayOneShot(successSE);
     }
 }

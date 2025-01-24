@@ -22,6 +22,10 @@ public class Branch : MonoBehaviour
         {
             Invoke("Eyeshadow", 0);
         }
+        else if(_event == 2)
+        {
+            Invoke("Eyebrows", 0);
+        }
         else
         {
             Invoke("_Start", 0);
@@ -77,6 +81,10 @@ public class Branch : MonoBehaviour
                 break;
             case 15:
                 Invoke("Falseeyelashes", delaytime);
+                break;
+            case 16:
+                PlayerPrefs.SetInt("EVENT", 2);
+                SceneManager.LoadScene("EyebrowEvent");
                 break;
             case 18:
                 Invoke("Purple2", delaytime);
@@ -185,11 +193,9 @@ public class Branch : MonoBehaviour
     }
     public void Purple1()
     {
-        GameObject thick = (GameObject)Resources.Load("ëæ");
-        GameObject thin = (GameObject)Resources.Load("ç◊");
+        GameObject eyebrows = (GameObject)Resources.Load("Ç‹Ç‰ñ—");
 
-        Instantiate(thick, new Vector2(-3, 0), Quaternion.identity);
-        Instantiate(thin, new Vector2(3, 0), Quaternion.identity);
+        Instantiate(eyebrows, new Vector2(0, 0), Quaternion.identity);
     }
     public void Purple2()
     {
@@ -221,5 +227,13 @@ public class Branch : MonoBehaviour
     {
         PlayerPrefs.SetInt("RESULT", _result);
         SceneManager.LoadScene("Result");
+    }
+    public void Eyebrows()
+    {
+        GameObject thick = (GameObject)Resources.Load("ëæ");
+        GameObject thin = (GameObject)Resources.Load("ç◊");
+
+        Instantiate(thick, new Vector2(-3, 0), Quaternion.identity);
+        Instantiate(thin, new Vector2(3, 0), Quaternion.identity);
     }
 }
