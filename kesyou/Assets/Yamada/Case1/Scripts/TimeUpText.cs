@@ -8,16 +8,19 @@ public class TimeUpText : MonoBehaviour
     public float timer = 10.0f;
     public Text timerText;
     public Text resultText;
-    public Text startCountdownText;
+    public Image startCountdownImage;
 
     public GameObject enemyPrefab;
     private List<GameObject> spawnedEnemies = new List<GameObject>();
     public int enemyCount = 6;
     public Vector2 spawnRange = new Vector2(-10, 10);
+    public Text countdownText;
 
     private bool isTimerEnded = false;
     private bool enemiesSpawned = false;
     private bool gameStarted = false; // ゲーム開始フラグ
+
+    public Sprite gameStartImage;  // ゲーム開始前に表示する画像
 
     void Start()
     {
@@ -102,22 +105,27 @@ public class TimeUpText : MonoBehaviour
 
     IEnumerator ShowCountdownAndStartGame()
     {
-        float countdown = 5.0f;
+        float countdown = 5.0f; // 3秒間のカウントダウン
 
-        // カウントダウンを表示
+        // 最初に画像を表示
+        startCountdownImage.sprite = gameStartImage;
+        startCountdownImage.gameObject.SetActive(true);
+
+        // カウントダウン中にテキストを更新
         while (countdown > 0)
         {
-            startCountdownText.text = "開始まで: " + Mathf.CeilToInt(countdown).ToString() + "秒\n丸の中に出てくる赤い〇をクリックして！";
-            yield return new WaitForSeconds(1.0f);
+            countdownText.text = "ゲーム開始まで: " + Mathf.CeilToInt(countdown).ToString() + "秒";
+            yield return new WaitForSeconds(1.0f);  // 1秒待機
             countdown -= 1.0f;
         }
 
-        // カウントダウンUIを非表示
-        startCountdownText.gameObject.SetActive(false);
+        // カウントダウンが終わったら、画像とテキストを非表示
+        countdownText.gameObject.SetActive(false);  // カウントダウンテキストを非表示
+        startCountdownImage.gameObject.SetActive(false);  // ゲーム開始前の画像を非表示
 
-        // 敵をスポーンしてゲームを開始
-        SpawnEnemies();
-        gameStarted = true; // ゲーム開始フラグを有効化
+        // ゲーム開始
+        SpawnEnemies();  // 敵をスポーン
+        gameStarted = true;  // ゲーム開始フラグをセット
 
         // タイマーを表示
         timerText.gameObject.SetActive(true);
