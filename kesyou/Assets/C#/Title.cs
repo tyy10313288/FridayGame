@@ -9,6 +9,6 @@ public class Title : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         PlayerPrefs.SetInt("EVENT", 0);
-        SceneManager.LoadScene("bunki");    
+        SceneManager.LoadScene("Text");    
     }
 }
