@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class LipstickButton : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class LipstickButton : MonoBehaviour
     public Image lipImage;
     public TextMeshProUGUI clear;
     public TextMeshProUGUI fail;
+    public int Chance = 3;
+    public GameObject live3;
+    public GameObject live2;
     private void Start()
     {
         SetLipstickAlpha(0);
@@ -41,6 +45,7 @@ public class LipstickButton : MonoBehaviour
             }
         }
         
+        
     }
 
     public void StartPress()
@@ -69,10 +74,27 @@ public class LipstickButton : MonoBehaviour
         {
             fail.gameObject.SetActive(true);
 
+            Chance -= 1;
+            if( Chance == 2 )
+            {
+                Destroy(live3);
+            }
+            if (Chance == 1)
+            {
+                Destroy(live2);
+            }
+            if (Chance <= 0)
+            {
+                SceneManager.LoadScene("GameOver");
+            }
+
+
+
         }
         else
         {
             fail.gameObject.SetActive(false);
+            
 
         }
     }
@@ -86,4 +108,10 @@ public class LipstickButton : MonoBehaviour
         currentColor.a = alphaValue;  // 设置Alpha值（透明度）
         lipImage.color = currentColor;  // 更新口红图像的颜色
     }
+    
+        
+       
+        
+
+    
 }
