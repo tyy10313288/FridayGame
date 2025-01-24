@@ -7,25 +7,15 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     public GameObject panel;
-    //public GameObject SettingPanel;
-
-    public Button startButton;
-    // public Button SettingButton;
-    // public Button ResumeButton;
-    // public Button TitleButton;
-    // public Button QuitButton;
-    
+    public Button startButton;   
 
     public CountDownTimer timerScript;
     public Text startText;
     public GameObject[] gameObjectsToActivate;
 
-    //public static bool GameIsPaused = false;
-
     void Start()
     {
-        panel.SetActive(true);
-        //SettingPanel.SetActive(false);
+        panel.SetActive(true);       
         startButton.onClick.AddListener(StartGame);
         startText.gameObject.SetActive(false);      
         foreach (var obj in gameObjectsToActivate)
@@ -36,7 +26,7 @@ public class GameController : MonoBehaviour
     }
     void Update()
     {
-        //SettingButton.onClick.AddListener(Pause);
+       
     }
 
     void StartGame()
@@ -44,28 +34,7 @@ public class GameController : MonoBehaviour
         panel.SetActive(false);
         StartCoroutine(StartCountdown());
     }
-
-    // void Pause()
-    // {
-    //     SettingPanel.SetActive(true);
-    //     Time.timeScale = 0f;
-    //     GameIsPaused = true;
-    // }
-    // void Resume()
-    // {
-    //     SettingPanel.SetActive(false);
-    //     Time.timeScale = 1f;
-    //     GameIsPaused = false;
-    // }
-    // void Title()
-    // {
-    //     SceneManager.LoadScene("Title");
-    // }
-    // void Quit()
-    // {
-    //     Application.Quit();
-    // }
-
+ 
     IEnumerator StartCountdown()
     {
         startText.gameObject.SetActive(true);

@@ -12,10 +12,8 @@ public class PauseMenu : MonoBehaviour
     public Button SettingButton;
     public Button ResumeButton;
     public Button TitleButton;
-    public Button QuitButton;    
-
-    
-    public static bool GameIsPaused = false;
+    public Button QuitButton;
+    public bool GameIsPaused = false;
 
     void Start()
     {        

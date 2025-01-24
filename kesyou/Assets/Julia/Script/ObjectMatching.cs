@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class ObjectMatching : MonoBehaviour
 {
@@ -26,8 +28,14 @@ public class ObjectMatching : MonoBehaviour
     public AudioClip failSE;
     public AudioClip successSE;
     public AudioSource audioSource;
-    
-    
+
+    public GameObject panel;
+    public Button startButton;
+    public Text startText;
+    public GameObject[] gameObjectsToActivate;
+    private bool Started=false;
+
+    public PauseMenu pauseMenu;    
     
     void Start()
     {
@@ -35,9 +43,42 @@ public class ObjectMatching : MonoBehaviour
         mainCamera = Camera.main;        
         targetPosition = targetArea.transform.position;
         movementDirection = (targetPosition - (Vector2)movingObject.transform.position).normalized;
-        audioSource = GetComponent<AudioSource>();    
+        audioSource = GetComponent<AudioSource>();
+
+        panel.SetActive(true);       
+        startButton.onClick.AddListener(StartGame);
+        startText.gameObject.SetActive(false);      
+        foreach (var obj in gameObjectsToActivate)
+        {
+            obj.SetActive(false);
+        }    
 
         
+       
+    }
+    void StartGame()
+    {
+        panel.SetActive(false);
+        StartCoroutine(StartCountdown());
+    }
+    IEnumerator StartCountdown()
+    {
+        startText.gameObject.SetActive(true);
+
+        startText.text = "Ready";
+        yield return new WaitForSeconds(1.5f);
+
+        startText.text = "Start!";
+        yield return new WaitForSeconds(1.0f);
+
+        startText.gameObject.SetActive(false);
+
+        
+        foreach (var obj in gameObjectsToActivate)
+        {
+            obj.SetActive(true);
+        }
+        Started=true;        
        
     }
 
@@ -51,7 +92,10 @@ public class ObjectMatching : MonoBehaviour
             Respawn();
         }
         
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && 
+        Started && 
+        (pauseMenu == null || !pauseMenu.GameIsPaused) && 
+        (EventSystem.current == null || !EventSystem.current.IsPointerOverGameObject()))
         {
             StopObject();
             DetectingPoint();
@@ -126,8 +170,7 @@ public class ObjectMatching : MonoBehaviour
 
         // Sync physics (if needed) and get the bounds
         Physics2D.SyncTransforms();
-        Bounds movingBounds = movingObjectCollider.bounds;
-        Debug.Log($"Bounds Center: {movingBounds.center}, Min: {movingBounds.min}, Max: {movingBounds.max}");
+        Bounds movingBounds = movingObjectCollider.bounds;        
 
         // Loop through each DetectPoint and check if it's inside the bounds
         foreach (Transform point in detectPoint)
