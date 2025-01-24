@@ -2,23 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
     public GameObject panel;
-    public GameObject SettingPanel;
+    //public GameObject SettingPanel;
 
     public Button startButton;
-    public Button SettingButton;
+    // public Button SettingButton;
+    // public Button ResumeButton;
+    // public Button TitleButton;
+    // public Button QuitButton;
+    
 
     public CountDownTimer timerScript;
     public Text startText;
     public GameObject[] gameObjectsToActivate;
 
+    //public static bool GameIsPaused = false;
+
     void Start()
     {
         panel.SetActive(true);
-        SettingPanel.SetActive(false);
+        //SettingPanel.SetActive(false);
         startButton.onClick.AddListener(StartGame);
         startText.gameObject.SetActive(false);      
         foreach (var obj in gameObjectsToActivate)
@@ -29,7 +36,7 @@ public class GameController : MonoBehaviour
     }
     void Update()
     {
-        SettingButton.onClick.AddListener(Setting);
+        //SettingButton.onClick.AddListener(Pause);
     }
 
     void StartGame()
@@ -38,10 +45,26 @@ public class GameController : MonoBehaviour
         StartCoroutine(StartCountdown());
     }
 
-    void Setting()
-    {
-        SettingPanel.SetActive(true);
-    }
+    // void Pause()
+    // {
+    //     SettingPanel.SetActive(true);
+    //     Time.timeScale = 0f;
+    //     GameIsPaused = true;
+    // }
+    // void Resume()
+    // {
+    //     SettingPanel.SetActive(false);
+    //     Time.timeScale = 1f;
+    //     GameIsPaused = false;
+    // }
+    // void Title()
+    // {
+    //     SceneManager.LoadScene("Title");
+    // }
+    // void Quit()
+    // {
+    //     Application.Quit();
+    // }
 
     IEnumerator StartCountdown()
     {

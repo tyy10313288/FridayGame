@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Title.unity
     guid: 8bbfa780a83340a4dbd1b5cfee7f8ca4
   - enabled: 1
+    path: Assets/Scenes/Text.unity
+    guid: be89f9fb89058174ea8aeda53c5c1236
+  - enabled: 1
     path: Assets/Scenes/bunki.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
@@ -20,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Julia/EyeShadow.unity
     guid: ef9e72d20c6f50e4983f1aeb60a9b761
+  - enabled: 1
+    path: Assets/Julia/EyebrowEvent.unity
+    guid: 40fdc997a861dbf4386f19f7d8ef041c
   m_configObjects: {}
