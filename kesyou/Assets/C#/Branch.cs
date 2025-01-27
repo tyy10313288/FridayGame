@@ -93,7 +93,8 @@ public class Branch : MonoBehaviour
                 Invoke("EventLoad", 2.5f);
                 break;
             case 18:
-                Invoke("Purple2", delaytime);
+                _result = 6;
+                Invoke("Result", delaytime);
                 break;
             case 19:
                 _result = 1;    
@@ -191,12 +192,6 @@ public class Branch : MonoBehaviour
         GameObject eyebrows = (GameObject)Resources.Load("Ç‹Ç‰ñ—");
 
         Instantiate(eyebrows, new Vector2(5, 0), Quaternion.identity);
-    }
-    public void Purple2()
-    {
-        GameObject frieza = (GameObject)Resources.Load("ÉtÉäÅ[ÉU");
-
-        Instantiate(frieza, new Vector2(5, 0), Quaternion.identity);
     }
     public void Pink()
     {
