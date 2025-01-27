@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Julia/EyebrowEvent.unity
     guid: 40fdc997a861dbf4386f19f7d8ef041c
+  - enabled: 1
+    path: Assets/Tei/LipGame.unity
+    guid: fabbb23927e8bf044bc98f59f9ce57db
   m_configObjects: {}

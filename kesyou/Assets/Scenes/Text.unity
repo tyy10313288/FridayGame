@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 103551005}
   - component: {fileID: 103551004}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: "\u6587\u5B57"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -305,7 +305,7 @@ GameObject:
   - component: {fileID: 850421926}
   - component: {fileID: 850421928}
   m_Layer: 5
-  m_Name: Text (Legacy) (1)
+  m_Name: "\u6587\u5B57"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
