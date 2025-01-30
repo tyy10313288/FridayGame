@@ -70,6 +70,7 @@ public class Branch : MonoBehaviour
                 Invoke("Result", delaytime);
                 break;
             case 10:
+                Invoke("Eyelashes", delaytime);
                 break;
             case 11:
                 Invoke("Pink", delaytime);
@@ -101,7 +102,8 @@ public class Branch : MonoBehaviour
                 Invoke("Result", delaytime);
                 break;
             case 20:
-                Invoke("Bassavasa", delaytime);
+                _result = 2;
+                Invoke("Result", delaytime);
                 break;
             case 21:
                 _result = 3;
@@ -171,6 +173,14 @@ public class Branch : MonoBehaviour
 
         Instantiate(lip, new Vector2(5, 0), Quaternion.identity);
     }
+    public void Eyelashes()
+    {
+        GameObject pink = (GameObject)Resources.Load("ピンク");
+        GameObject purple1 = (GameObject)Resources.Load("紫1");
+
+        Instantiate(pink, new Vector2(-5, 0), Quaternion.identity);
+        Instantiate(purple1, new Vector2(5, 0), Quaternion.identity);
+    }
     public void Eyeshadow()
     {
         GameObject pink = (GameObject)Resources.Load("ピンク");
@@ -207,12 +217,7 @@ public class Branch : MonoBehaviour
         Instantiate(thinfalseeyelashes, new Vector2(-5, 0), Quaternion.identity);
         Instantiate(bassavasa, new Vector2(5, 0), Quaternion.identity);
     }
-    public void Bassavasa()
-    {
-        GameObject whitegal = (GameObject)Resources.Load("白ギャル");
 
-        Instantiate(whitegal, new Vector2(0, 0), Quaternion.identity);
-    }
     public void Result()
     {
         PlayerPrefs.SetInt("RESULT", _result);

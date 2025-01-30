@@ -17,6 +17,22 @@ public class Result : MonoBehaviour
             Instantiate(ordinarygirl, new Vector2(-3, -0.67f), Quaternion.identity);
             Instantiate(ordinarybackground, new Vector3(-3, -0.5f,1), Quaternion.identity);
         }
+        if (result == 2)
+        {
+            GameObject ordinarygirl = (GameObject)Resources.Load("”’ƒMƒƒƒ‹");
+            GameObject ordinarybackground = (GameObject)Resources.Load("ƒMƒƒƒ‹Œn@”wŒi@‚Ú‚©‚µ");
+
+            Instantiate(ordinarygirl, new Vector2(-3, -0.67f), Quaternion.identity);
+            Instantiate(ordinarybackground, new Vector3(-3, -0.5f, 1), Quaternion.identity);
+        }
+        if (result == 3)
+        {
+            GameObject ordinarygirl = (GameObject)Resources.Load("•½–ìƒmƒ‰");
+            GameObject ordinarybackground = (GameObject)Resources.Load("•½–ìƒmƒ‰@”wŒi@‚Ú‚©‚µ");
+
+            Instantiate(ordinarygirl, new Vector2(-3, -0.67f), Quaternion.identity);
+            Instantiate(ordinarybackground, new Vector3(-3, -0.5f, 1), Quaternion.identity);
+        }
         if (result == 4)
         {
             GameObject amra = (GameObject)Resources.Load("ƒAƒ€ƒ‰[");
