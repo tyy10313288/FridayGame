@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Yamada/Case1/Scene/RondamEvent_Yamada.unity
     guid: 35fe87f12b4c6ae478b432e7c80d3ab2
+  - enabled: 1
+    path: Assets/Julia/matuke.unity
+    guid: 38e11c5712c284a41b6cda4a388b15ac
   m_configObjects: {}

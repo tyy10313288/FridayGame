@@ -48,8 +48,10 @@ public class CountDownTimer : MonoBehaviour
         GameObject[] remainingKes = GameObject.FindGameObjectsWithTag("ke");
         if (remainingKes.Length == 0)
         {
-            SceneManager.LoadScene("bunki");
             audioSource.PlayOneShot(successSE);
+            StartCoroutine(DelayLoadScene("bunki", 2));
+            //SceneManager.LoadScene("bunki");
+            
         }
         else
         {
@@ -63,9 +65,10 @@ public class CountDownTimer : MonoBehaviour
     if (objects.Length == 0)
     {
         canClick = false;
-        SceneManager.LoadScene("bunki");
+        //SceneManager.LoadScene("bunki");
         audioSource.PlayOneShot(successSE);
-    }
+            StartCoroutine(DelayLoadScene("bunki", 2));
+        }
 }
 
   void Awake()
@@ -79,4 +82,9 @@ public void BeginCountdown()
     enabled = true;
 }
 
+    IEnumerator DelayLoadScene(string sceneName, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(sceneName);
+    }
 }

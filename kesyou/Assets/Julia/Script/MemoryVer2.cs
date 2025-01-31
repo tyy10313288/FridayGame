@@ -77,18 +77,20 @@ public class MemoryVer2 : MonoBehaviour
             {
                 showResult.text = "Correct!";
                 audioSource.PlayOneShot(successSE);
-                SceneManager.LoadScene("bunki");
+                //SceneManager.LoadScene("bunki");
+                StartCoroutine(DelayLoadScene("bunki", 2));
                 EnableColorButtons(false);
             }
         }
         else
         {
             showResult.text = "Wrong!";
-            audioSource.PlayOneShot(failSE);
+            audioSource.PlayOneShot(failSE);            
             SceneManager.LoadScene("GameOver");
 
         }
     }
+
 
     void EnableColorButtons(bool enable)
     {
@@ -96,5 +98,10 @@ public class MemoryVer2 : MonoBehaviour
         {
             button.interactable = enable;
         }
+    }
+    IEnumerator DelayLoadScene(string sceneName, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(sceneName);
     }
 }

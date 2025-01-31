@@ -190,19 +190,27 @@ public class ObjectMatching : MonoBehaviour
 if(touchingPoint>7)
 {
     showResult.text="Win";
-    audioSource.PlayOneShot(successSE);   
+    audioSource.PlayOneShot(successSE);
+                //SceneManager.LoadScene("bunki");
+                StartCoroutine(DelayLoadScene("bunki", 2));
 
-}
+            }
 else
 {
     audioSource.PlayOneShot(failSE);
-}
+                SceneManager.LoadScene("GameOver");
+            }
 
 
         // Display the result
         resultText.text =touchingPoint.ToString();
     }
 }
+    IEnumerator DelayLoadScene(string sceneName, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(sceneName);
+    }
 }
 
         
