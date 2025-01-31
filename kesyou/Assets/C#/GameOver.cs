@@ -17,7 +17,7 @@ public class GameOver : MonoBehaviour, IPointerClickHandler
         }
         if (screen == "タイトルに戻る")
             SceneManager.LoadScene("Title");
-
+        /*
         if (screen == "ゲーム終わり")
         {
 #if UNITY_EDITOR
@@ -26,5 +26,6 @@ public class GameOver : MonoBehaviour, IPointerClickHandler
     Application.Quit();
 #endif
         }
+        */
     }
 }
