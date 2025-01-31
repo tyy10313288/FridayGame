@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;  // SceneManagerのインポート
 using System.Collections;
 using System.Collections.Generic;
 
@@ -42,10 +43,10 @@ public class TimeUpText : MonoBehaviour
                 timer = 0;
                 isTimerEnded = true;
 
-                // 敵が残っている場合は「ざんねん！」と表示
+                // 敵が残っている場合は「GameOver」シーンに遷移
                 if (spawnedEnemies.Count > 0)
                 {
-                    ShowResult("ざんねん！");
+                    StartCoroutine(GoToGameOverScene());
                 }
             }
 
@@ -56,7 +57,7 @@ public class TimeUpText : MonoBehaviour
         if (!isTimerEnded && spawnedEnemies.Count == 0)
         {
             isTimerEnded = true;
-            ShowResult("いいね！");
+            StartCoroutine(GoToBunkiScene());
         }
     }
 
@@ -129,5 +130,21 @@ public class TimeUpText : MonoBehaviour
 
         // タイマーを表示
         timerText.gameObject.SetActive(true);
+    }
+
+    // 敵が残っている場合にGameOverシーンに遷移
+    IEnumerator GoToGameOverScene()
+    {
+        ShowResult("Game Over");
+        yield return new WaitForSeconds(1); // 結果テキストを表示するために3秒待機
+        SceneManager.LoadScene("GameOver"); // GameOverシーンに遷移
+    }
+
+    // 敵が残っていなければBunkiシーンに遷移
+    IEnumerator GoToBunkiScene()
+    {
+        ShowResult("いいね！");
+        yield return new WaitForSeconds(1); // 結果テキストを表示するために3秒待機
+        SceneManager.LoadScene("bunki"); // bunkiシーンに遷移
     }
 }
