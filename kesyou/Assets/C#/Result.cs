@@ -41,7 +41,23 @@ public class Result : MonoBehaviour
             Instantiate(amra, new Vector2(-3, -0.67f), Quaternion.identity);
             Instantiate(amrabackground, new Vector3(-3, -0.5f, 1), Quaternion.identity);
         }
-        if(result == 9)
+        if (result == 5)
+        {
+            GameObject punkband = (GameObject)Resources.Load("パンクバンド");
+            GameObject punkbandbackground = (GameObject)Resources.Load("パンクバンド　背景");
+
+            Instantiate(punkband, new Vector2(-3, 0), Quaternion.identity);
+            Instantiate(punkbandbackground, new Vector3(-3, -0.5f, 1), Quaternion.identity);
+        }
+        if (result == 6)
+        {
+            GameObject punkband = (GameObject)Resources.Load("フリーザ");
+            GameObject amrabackground = (GameObject)Resources.Load("ゲーム中背景");
+
+            Instantiate(punkband, new Vector2(-3, -0.67f), Quaternion.identity);
+            Instantiate(amrabackground, new Vector3(-3, -0.5f, 1), Quaternion.identity);
+        }
+        if (result == 9)
         {
             GameObject shrek = (GameObject)Resources.Load("シュレック");
             GameObject shrekbackground = (GameObject)Resources.Load("シュレック　背景　ぼかし");
@@ -53,6 +69,22 @@ public class Result : MonoBehaviour
         {
             GameObject piccolo = (GameObject)Resources.Load("ピッコロ");
             GameObject piccolobackground = (GameObject)Resources.Load("ピッコロ　背景　ぼかし");
+
+            Instantiate(piccolo, new Vector2(-3, -0.66f), Quaternion.identity);
+            Instantiate(piccolobackground, new Vector3(-3, -0.5f, 1), Quaternion.identity);
+        }
+        if (result == 11)
+        {
+            GameObject blackgal = (GameObject)Resources.Load("黒ギャル");
+            GameObject blackgalbackground = (GameObject)Resources.Load("ギャル系　背景　ぼかし");
+
+            Instantiate(blackgal, new Vector2(-3, -0.66f), Quaternion.identity);
+            Instantiate(blackgalbackground, new Vector3(-3, -0.5f, 1), Quaternion.identity);
+        }
+        if (result == 12)
+        {
+            GameObject piccolo = (GameObject)Resources.Load("ヤマンバ");
+            GameObject piccolobackground = (GameObject)Resources.Load("ギャル系　背景　ぼかし");
 
             Instantiate(piccolo, new Vector2(-3, -0.66f), Quaternion.identity);
             Instantiate(piccolobackground, new Vector3(-3, -0.5f, 1), Quaternion.identity);

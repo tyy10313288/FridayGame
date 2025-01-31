@@ -79,11 +79,15 @@ public class Branch : MonoBehaviour
                 Invoke("Purple1", delaytime);
                 break;
             case 13:
-                PlayerPrefs.SetInt("EVENT", 2);
+                Invoke("Lip", delaytime);
+                /*
+                PlayerPrefs.SetInt("EVENT", 3);
                 Invoke("Event", 0);
                 Invoke("EventLoad", 2.5f);
+                */
                 break;
             case 14:
+                Invoke("Falseeyelashes1",delaytime);
                 break;
             case 15:
                 Invoke("Falseeyelashes", delaytime);
@@ -92,6 +96,10 @@ public class Branch : MonoBehaviour
                 PlayerPrefs.SetInt("EVENT", 2);
                 Invoke("Event", 0);
                 Invoke("EventLoad", 2.5f);
+                break;
+            case 17:
+                _result = 5;
+                Invoke("Result", delaytime);
                 break;
             case 18:
                 _result = 6;
@@ -111,6 +119,14 @@ public class Branch : MonoBehaviour
                 break;
             case 22:
                 _result = 4;
+                Invoke("Result", delaytime);
+                break;
+            case 23:
+                _result = 11;
+                Invoke("Result", delaytime);
+                break;
+            case 24:
+                _result = 12;
                 Invoke("Result", delaytime);
                 break;
         }
@@ -217,7 +233,14 @@ public class Branch : MonoBehaviour
         Instantiate(thinfalseeyelashes, new Vector2(-5, 0), Quaternion.identity);
         Instantiate(bassavasa, new Vector2(5, 0), Quaternion.identity);
     }
+    public void Falseeyelashes1()
+    {
+        GameObject thinfalseeyelashes = (GameObject)Resources.Load("バサバサ");
+        GameObject bassavasa = (GameObject)Resources.Load("モリモリバサバサ");
 
+        Instantiate(thinfalseeyelashes, new Vector2(-5, 0), Quaternion.identity);
+        Instantiate(bassavasa, new Vector2(5, 0), Quaternion.identity);
+    }
     public void Result()
     {
         PlayerPrefs.SetInt("RESULT", _result);
@@ -246,5 +269,8 @@ public class Branch : MonoBehaviour
 
         if (_event == 2)
             SceneManager.LoadScene("EyebrowEvent");
+
+        if (_event == 3)
+            SceneManager.LoadScene("LipGame");
     }
 }
