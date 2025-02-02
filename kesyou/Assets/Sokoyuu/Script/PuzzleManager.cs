@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement; // 引入场景管理命名空间
 
 public class PuzzleManager : MonoBehaviour
 {
@@ -10,8 +11,6 @@ public class PuzzleManager : MonoBehaviour
 
     public Text countdownText;       // 倒计时文本
     public GameObject startButton;   // 开始按钮
-    public GameObject winImage;      // "You Win" 图片
-    public GameObject loseImage;     // "You Lose" 图片
     public GameObject puzzleContainer; // 拼图块父对象，用于隐藏拼图
 
     private float countdownTime = 30f; // 倒计时总时间
@@ -19,14 +18,12 @@ public class PuzzleManager : MonoBehaviour
 
     void Start()
     {
-        // 隐藏拼图块、倒计时和胜负图像
+        // 隐藏拼图块和倒计时
         foreach (var piece in pieces)
         {
             piece.gameObject.SetActive(false);
         }
         countdownText.gameObject.SetActive(false);
-        winImage.SetActive(false);
-        loseImage.SetActive(false);
     }
 
     public void StartGame()
@@ -85,11 +82,11 @@ public class PuzzleManager : MonoBehaviour
 
         if (isWin)
         {
-            winImage.SetActive(true); // 显示 "You Win" 图片
+            SceneManager.LoadScene("bunki"); // 跳转到胜利场景
         }
         else
         {
-            loseImage.SetActive(true); // 显示 "You Lose" 图片
+            SceneManager.LoadScene("GameOver"); // 跳转到失败场景
         }
 
         // 停止所有拼图块的交互
@@ -114,4 +111,3 @@ public class PuzzleManager : MonoBehaviour
         EndGame(true);
     }
 }
-
