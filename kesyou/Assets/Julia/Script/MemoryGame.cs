@@ -10,7 +10,6 @@ public class MemoryGame : MonoBehaviour
     public Button[] colorButtons;
     public Sprite[] colorSprites;
     public Text showResult;
-    private int stepNow=0;
 
     private List<int> selectedColors = new List<int>();
     private List<int> playerInput = new List<int>();

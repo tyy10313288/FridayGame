@@ -9,6 +9,12 @@ public class Result : MonoBehaviour
     {
         result = PlayerPrefs.GetInt("RESULT", 0);
 
+        if (result == 0)
+        {
+            GameObject sirone = (GameObject)Resources.Load("‚µ‚ë‚Ë");
+
+            Instantiate(sirone, new Vector2(-3, -0.67f), Quaternion.identity);
+        }
         if (result == 1)
         {
             GameObject ordinarygirl = (GameObject)Resources.Load("•’Ê‚Ì—‚Ìq");

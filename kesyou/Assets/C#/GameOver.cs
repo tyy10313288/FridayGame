@@ -1,31 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Device;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class GameOver : MonoBehaviour, IPointerClickHandler
+public class GameOver : MonoBehaviour
 {
-    [SerializeField] string screen;
-    public void OnPointerClick(PointerEventData eventData)
+    public void Retry()
     {
-        if (screen == "もう一度挑戦する")
-        {
-            PlayerPrefs.SetInt("EVENT", 0);
-            SceneManager.LoadScene("bunki");
-        }
-        if (screen == "タイトルに戻る")
-            SceneManager.LoadScene("Title");
-        /*
-        if (screen == "ゲーム終わり")
-        {
+        PlayerPrefs.SetInt("EVENT", 0);
+        SceneManager.LoadScene("bunki");
+    }
+    public void BackTitle()
+    {
+        SceneManager.LoadScene("Title");
+    }
+    public void GameEnd()
+    {
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
+        UnityEditor.EditorApplication.isPlaying = false;
 #else
     Application.Quit();
 #endif
-        }
-        */
     }
 }

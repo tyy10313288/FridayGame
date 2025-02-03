@@ -62,7 +62,7 @@ public class LipstickButton : MonoBehaviour
         if (currentValue > 80&&currentValue<91)
         {
             clear.gameObject.SetActive(true);
-
+            SceneManager.LoadScene("bunki");
         }
         else
         {

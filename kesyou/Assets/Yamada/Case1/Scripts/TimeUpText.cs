@@ -18,7 +18,6 @@ public class TimeUpText : MonoBehaviour
     public Text countdownText;
 
     private bool isTimerEnded = false;
-    private bool enemiesSpawned = false;
     private bool gameStarted = false; // ゲーム開始フラグ
 
     public Sprite gameStartImage;  // ゲーム開始前に表示する画像
@@ -82,7 +81,6 @@ public class TimeUpText : MonoBehaviour
             enemy.AddComponent<EnemyDe>().OnEnemyDestroyed = OnEnemyDestroyed;
             spawnedEnemies.Add(enemy);
         }
-        enemiesSpawned = true;
     }
 
     Vector3 GenerateRandomPositionInCircle()

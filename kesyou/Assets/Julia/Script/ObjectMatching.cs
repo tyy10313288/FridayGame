@@ -21,7 +21,6 @@ public class ObjectMatching : MonoBehaviour
 
     public bool isMoving = true;         // Controls if the object is moving   
     private Vector2 targetPosition;       // Position of the target area
-    private bool hasPassedTarget = false;
     private Vector2 originalDirection;
     private Camera mainCamera;
 
@@ -112,7 +111,6 @@ public class ObjectMatching : MonoBehaviour
         {
             SpawnAtRandomPoint();
             isMoving=true;
-            hasPassedTarget=false;
         }
     }
     private void SpawnAtRandomPoint()
@@ -141,10 +139,7 @@ public class ObjectMatching : MonoBehaviour
         movingObject.transform.Translate(direction * moveSpeed * Time.deltaTime);
 
         // Check if the object has passed through the target area
-        if (Vector2.Distance(currentPosition, targetPosition) < 0.1f)
-        {
-            hasPassedTarget = true; // Mark the object as having passed the target
-        }
+
     }   
     private void ContinueMoving()
     {

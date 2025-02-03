@@ -11,32 +11,44 @@ public class Branch : MonoBehaviour
 {
     public int a;
     public int _event;
+    public bool eve;
     float delaytime = 0.1f;
     int _result;
 
     void Start()
     {
+        eve = false;
         _event = PlayerPrefs.GetInt("EVENT", 0);
         PlayerPrefs.SetInt("RESULT", 0);
 
         if(_event == 0)
             Invoke("_Start", 0);
 
-        if (_event == 1)
+        if(_event == 1)
             Invoke("Eyeshadow", 0);
 
         if(_event == 2)
             Invoke("Eyebrows", 0);
 
-        if (_event == 3)
+        if(_event == 3)
             Invoke("Lip", 0);
+
+        if(_event == 4)
+            Invoke("Falseeyelashes2", delaytime);
+
+        if(_event == 5)
+            Invoke("Falseeyelashes1", delaytime);
+
+        if( _event == 6)
+            Invoke("Fand", delaytime);
     }
     public void branch()
     {
         switch (a)
         {
             case 0:
-                Invoke("Fand", delaytime);
+                PlayerPrefs.SetInt("EVENT", 6);
+                Invoke("Event", 0);
                 break;
             case 1:
                 Invoke("Usually", delaytime);
@@ -53,7 +65,6 @@ public class Branch : MonoBehaviour
             case 5:
                 PlayerPrefs.SetInt("EVENT",1);
                 Invoke("Event", 0);
-                Invoke("EventLoad", 3);
                 break;
             case 6:
                 Invoke("Black2", delaytime);
@@ -79,23 +90,20 @@ public class Branch : MonoBehaviour
                 Invoke("Purple1", delaytime);
                 break;
             case 13:
-                Invoke("Lip", delaytime);
-                /*
                 PlayerPrefs.SetInt("EVENT", 3);
                 Invoke("Event", 0);
-                Invoke("EventLoad", 2.5f);
-                */
                 break;
             case 14:
-                Invoke("Falseeyelashes1",delaytime);
+                PlayerPrefs.SetInt("EVENT", 4);
+                Invoke("Event", 0);
                 break;
             case 15:
-                Invoke("Falseeyelashes", delaytime);
+                PlayerPrefs.SetInt("EVENT", 5);
+                Invoke("Event", 0);
                 break;
             case 16:
                 PlayerPrefs.SetInt("EVENT", 2);
                 Invoke("Event", 0);
-                Invoke("EventLoad", 2.5f);
                 break;
             case 17:
                 _result = 5;
@@ -225,7 +233,7 @@ public class Branch : MonoBehaviour
 
         Instantiate(falseeyelashes, new Vector2(5, 0), Quaternion.identity);
     }
-    public void Falseeyelashes()
+    public void Falseeyelashes1()
     {
         GameObject thinfalseeyelashes = (GameObject)Resources.Load("細今どきつけま");
         GameObject bassavasa = (GameObject)Resources.Load("バッサバサ");
@@ -233,7 +241,7 @@ public class Branch : MonoBehaviour
         Instantiate(thinfalseeyelashes, new Vector2(-5, 0), Quaternion.identity);
         Instantiate(bassavasa, new Vector2(5, 0), Quaternion.identity);
     }
-    public void Falseeyelashes1()
+    public void Falseeyelashes2()
     {
         GameObject thinfalseeyelashes = (GameObject)Resources.Load("バサバサ");
         GameObject bassavasa = (GameObject)Resources.Load("モリモリバサバサ");
@@ -256,21 +264,34 @@ public class Branch : MonoBehaviour
     }
     public void Event()
     {
+        eve = true;
+
         GameObject _event = (GameObject)Resources.Load("イベント発生");
 
         Instantiate(_event, new Vector2(15, 3), Quaternion.identity);
+
+        Invoke("EventLoad", 2.5f);
     }
     public void EventLoad()
     {
         _event = PlayerPrefs.GetInt("EVENT", 0);
 
-        if (_event == 1)
+        if(_event == 1)
             SceneManager.LoadScene("EyeShadow");
 
-        if (_event == 2)
+        if(_event == 2)
             SceneManager.LoadScene("EyebrowEvent");
 
-        if (_event == 3)
+        if(_event == 3)
             SceneManager.LoadScene("LipGame");
+
+        if(_event == 4)
+            SceneManager.LoadScene("matuke");
+
+        if(_event == 5)
+            SceneManager.LoadScene("matuke");
+
+        if (_event == 6)
+            SceneManager.LoadScene("RondamEvent_Yamada");   
     }
 }

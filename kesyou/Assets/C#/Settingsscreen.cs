@@ -4,9 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class Settingsscreen : MonoBehaviour, IPointerClickHandler
+public class Settingsscreen : MonoBehaviour
 {
-    [SerializeField] string screen;
     public GameObject settingsscreen;
     Setting setting;
     void Start()
@@ -14,25 +13,21 @@ public class Settingsscreen : MonoBehaviour, IPointerClickHandler
         setting = GameObject.Find("Setting").GetComponent<Setting>();
     }
     
-    public void OnPointerClick(PointerEventData eventData)
+    public void Back()
     {
-        if (screen == "タイトルに戻る")
-            SceneManager.LoadScene("Title");
-
-        if (screen == "ゲーム終了")
-        {
+        setting._setting = false;
+        settingsscreen.SetActive(false);
+    }
+    public void BackTitle()
+    {
+        SceneManager.LoadScene("Title");
+    }
+    public void GameEnd()
+    {
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
+        UnityEditor.EditorApplication.isPlaying = false;
 #else
     Application.Quit();
 #endif
-        }
-
-        if (screen == "戻る")
-        {
-            setting._setting = false;
-            settingsscreen.SetActive(false);
-        }
-
     }
 }

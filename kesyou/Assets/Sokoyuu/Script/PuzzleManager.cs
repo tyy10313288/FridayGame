@@ -82,7 +82,7 @@ public class PuzzleManager : MonoBehaviour
 
         if (isWin)
         {
-            SceneManager.LoadScene("bunki"); // 跳转到胜利场景
+            SceneManager.LoadScene("Result"); // 跳转到胜利场景
         }
         else
         {
