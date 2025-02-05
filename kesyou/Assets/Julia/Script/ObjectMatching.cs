@@ -26,6 +26,7 @@ public class ObjectMatching : MonoBehaviour
 
     public AudioClip failSE;
     public AudioClip successSE;
+    public AudioClip BGM;
     public AudioSource audioSource;
 
     public GameObject panel;
@@ -58,6 +59,7 @@ public class ObjectMatching : MonoBehaviour
     void StartGame()
     {
         panel.SetActive(false);
+        showResult.gameObject.SetActive(false);
         StartCoroutine(StartCountdown());
     }
     IEnumerator StartCountdown()
@@ -180,13 +182,15 @@ public class ObjectMatching : MonoBehaviour
         pointPosition.y < movingBounds.max.y + margin)
     {
         touchingPoint++;
+        
     }
 }
-if(touchingPoint>7)
+if(touchingPoint>6)
 {
-    showResult.text="Win";
+                showResult.gameObject.SetActive(true);
+    showResult.text="Clear";
     audioSource.PlayOneShot(successSE);
-                //SceneManager.LoadScene("bunki");
+                
                 StartCoroutine(DelayLoadScene("bunki", 2));
 
             }

@@ -9,7 +9,7 @@ public class CountDownTimer : MonoBehaviour
     public Text resultText;
     public Text timerText;
     private float startTime;
-    public float countdownTime = 60;
+    public float countdownTime;
     public static bool canClick = true;
 
     public AudioClip failSE;
@@ -50,7 +50,7 @@ public class CountDownTimer : MonoBehaviour
         {
             audioSource.PlayOneShot(successSE);
             StartCoroutine(DelayLoadScene("bunki", 2));
-            //SceneManager.LoadScene("bunki");
+            
             
         }
         else
@@ -64,8 +64,7 @@ public class CountDownTimer : MonoBehaviour
     GameObject[] objects = GameObject.FindGameObjectsWithTag("ke");
     if (objects.Length == 0)
     {
-        canClick = false;
-        //SceneManager.LoadScene("bunki");
+        canClick = false;        
         audioSource.PlayOneShot(successSE);
             StartCoroutine(DelayLoadScene("bunki", 2));
         }

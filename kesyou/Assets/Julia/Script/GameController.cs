@@ -32,6 +32,7 @@ public class GameController : MonoBehaviour
     void StartGame()
     {
         panel.SetActive(false);
+        
         StartCoroutine(StartCountdown());
     }
  
@@ -46,6 +47,7 @@ public class GameController : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
 
         startText.gameObject.SetActive(false);
+        timerScript.gameObject.SetActive(true);
 
         
         foreach (var obj in gameObjectsToActivate)
