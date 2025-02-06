@@ -36,6 +36,36 @@ EditorBuildSettings:
     path: Assets/Julia/matuke.unity
     guid: 38e11c5712c284a41b6cda4a388b15ac
   - enabled: 1
-    path: Assets/Scenes/PuzzleEvent.unity
+    path: Assets/Scenes/Puzzl/PuzzleEvent.unity
     guid: 9026eca5908f84b4a814d95ffa939c96
+  - enabled: 1
+    path: Assets/Scenes/Puzzl/Puzzle9.unity
+    guid: ff033cc5040a0a04fa96b894431f1206
+  - enabled: 1
+    path: Assets/Scenes/Puzzl/Puzzle10.unity
+    guid: 7694f6b0beb42694c8b2123f5ad8179c
+  - enabled: 1
+    path: Assets/Scenes/Puzzl/Puzzle12.unity
+    guid: 5068948ce282f0147aa6b588c6a30e67
+  - enabled: 1
+    path: Assets/Scenes/Puzzl/Puzzle11.unity
+    guid: a724129f53521c743a526545f57a4da9
+  - enabled: 1
+    path: Assets/Scenes/Puzzl/Puzzle4.unity
+    guid: 8de08e617ce1e6c42aa6392e8c7c0ebe
+  - enabled: 1
+    path: Assets/Scenes/Puzzl/Puzzle5.unity
+    guid: 140c61ed957d1a340ab2ef9bb6a01f8d
+  - enabled: 1
+    path: Assets/Scenes/Puzzl/Puzzle6.unity
+    guid: 470dbe0b77b0aad4cbe0929ae8e7104e
+  - enabled: 1
+    path: Assets/Scenes/Puzzl/Puzzle3.unity
+    guid: 4a170322e80849442af20fb961bbf869
+  - enabled: 1
+    path: Assets/Scenes/Puzzl/Puzzle1.unity
+    guid: 1bc5715058368d144b8bbc9612364e73
+  - enabled: 1
+    path: Assets/Scenes/Puzzl/Puzzle2.unity
+    guid: a1ee3c9be457cc14eb0ea7aef075455c
   m_configObjects: {}

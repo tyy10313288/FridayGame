@@ -252,7 +252,40 @@ public class Branch : MonoBehaviour
     public void Result()
     {
         PlayerPrefs.SetInt("RESULT", _result);
-        SceneManager.LoadScene("Result");
+        switch (_result)
+        {
+            case 1:
+                SceneManager.LoadScene("Puzzle1");
+                break;
+            case 2:
+                SceneManager.LoadScene("Puzzle2");
+                break;
+            case 3:
+                SceneManager.LoadScene("Puzzle3");
+                break;
+            case 4:
+                SceneManager.LoadScene("Puzzle4");
+                break;
+            case 5:
+                SceneManager.LoadScene("Puzzle5");
+                break;
+            case 6:
+                SceneManager.LoadScene("Puzzle6");
+                break;
+            case 9:
+                SceneManager.LoadScene("Puzzle9");
+                break;
+            case 10:
+                SceneManager.LoadScene("Puzzle10");
+                break;
+            case 11:
+                SceneManager.LoadScene("Puzzle11");
+                break;
+            case 12:
+                SceneManager.LoadScene("Puzzle12");
+                break;
+
+        }
     }
     public void Eyebrows()
     {
