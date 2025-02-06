@@ -18,9 +18,11 @@ public class CountDownTimer : MonoBehaviour
 
     void Start()
     {
+        
         startTime = Time.time;
         BeginCountdown();
         audioSource = GetComponent<AudioSource>();
+        
     }
 
     void Update()
