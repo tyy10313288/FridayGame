@@ -36,6 +36,6 @@ EditorBuildSettings:
     path: Assets/Julia/matuke.unity
     guid: 38e11c5712c284a41b6cda4a388b15ac
   - enabled: 1
-    path: Assets/Sokoyuu/PuzzleEvent.unity
+    path: Assets/Scenes/PuzzleEvent.unity
     guid: 9026eca5908f84b4a814d95ffa939c96
   m_configObjects: {}
