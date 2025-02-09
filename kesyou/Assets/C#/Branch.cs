@@ -22,16 +22,16 @@ public class Branch : MonoBehaviour
         PlayerPrefs.SetInt("RESULT", 0);
 
         if(_event == 0)
-            Invoke("_Start", 0);
+            Invoke("_Start", delaytime);
 
         if(_event == 1)
-            Invoke("Eyeshadow", 0);
+            Invoke("Eyeshadow", delaytime);
 
         if(_event == 2)
-            Invoke("Eyebrows", 0);
+            Invoke("Eyebrows", delaytime);
 
         if(_event == 3)
-            Invoke("Lip", 0);
+            Invoke("Lip", delaytime);
 
         if(_event == 4)
             Invoke("Falseeyelashes2", delaytime);
@@ -42,13 +42,14 @@ public class Branch : MonoBehaviour
         if( _event == 6)
             Invoke("Fand", delaytime);
     }
+    //化粧の番号に対応した関数の呼び出し
     public void branch()
     {
         switch (a)
         {
             case 0:
                 PlayerPrefs.SetInt("EVENT", 6);
-                Invoke("Event", 0);
+                Invoke("Event", delaytime);
                 break;
             case 1:
                 Invoke("Usually", delaytime);
@@ -64,7 +65,7 @@ public class Branch : MonoBehaviour
                 break;  
             case 5:
                 PlayerPrefs.SetInt("EVENT",1);
-                Invoke("Event", 0);
+                Invoke("Event", delaytime);
                 break;
             case 6:
                 Invoke("Black2", delaytime);
@@ -91,19 +92,19 @@ public class Branch : MonoBehaviour
                 break;
             case 13:
                 PlayerPrefs.SetInt("EVENT", 3);
-                Invoke("Event", 0);
+                Invoke("Event", delaytime);
                 break;
             case 14:
                 PlayerPrefs.SetInt("EVENT", 4);
-                Invoke("Event", 0);
+                Invoke("Event", delaytime);
                 break;
             case 15:
                 PlayerPrefs.SetInt("EVENT", 5);
-                Invoke("Event", 0);
+                Invoke("Event", delaytime);
                 break;
             case 16:
                 PlayerPrefs.SetInt("EVENT", 2);
-                Invoke("Event", 0);
+                Invoke("Event", delaytime);
                 break;
             case 17:
                 _result = 5;
@@ -252,6 +253,7 @@ public class Branch : MonoBehaviour
     public void Result()
     {
         PlayerPrefs.SetInt("RESULT", _result);
+        //発表日前日に最後のイラスト全部パズルにしたいと言われ他の人が書いたプログラムを書き換える余裕がなくシーン複製で代用した、
         switch (_result)
         {
             case 1:
@@ -305,8 +307,11 @@ public class Branch : MonoBehaviour
 
         Invoke("EventLoad", 2.5f);
     }
+    //分岐の途中でイベントを発生させる  、イベントは他のプログラマーに各自つくってもらった
+    //連絡が取れなくなる人がいたりしたのでイベントの完成度が個々で違っている、進行不能バグがあるシーンもありその辺の修正等が間に合わなかった（反省点）
     public void EventLoad()
     {
+        //イベントの値を取得し、対応したイベントへ遷移させる
         _event = PlayerPrefs.GetInt("EVENT", 0);
 
         if(_event == 1)

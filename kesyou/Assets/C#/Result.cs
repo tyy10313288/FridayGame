@@ -8,6 +8,8 @@ public class Result : MonoBehaviour
     void Start()
     {
         result = PlayerPrefs.GetInt("RESULT", 0);
+        //リザルトの値を取得し対応した最終絵、背景を表示、数字が一部とんでいるのはその仕事を担当していたグラフィックの人と連絡が取れなくなったため、
+        //一部分岐がなくなっているから
 
         if (result == 0)
         {
